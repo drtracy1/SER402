@@ -12,8 +12,29 @@
     tools:context="ser402team.weallcode.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Login"
+        android:id="@+id/button_Login"
+        android:onClick="goToLogin"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/button_CreateAcc"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Account"
+        android:id="@+id/button_CreateAcc"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToCreateAcc" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logoView1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
 </RelativeLayout>

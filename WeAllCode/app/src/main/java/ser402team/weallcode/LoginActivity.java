@@ -1,15 +1,18 @@
 package ser402team.weallcode;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
     public static String loginName;
     public static String password;
+    public final static String USERNAME = "ser402team.weallcode.USERNAME";
 
     private static void setLoginName(String ln) {
         loginName = ln;
@@ -32,8 +35,23 @@ public class LoginActivity extends AppCompatActivity {
                         final EditText pwd = (EditText) findViewById(R.id.password);
                         setLoginName(lName.getText().toString());
                         setPassword(pwd.getText().toString());
+
+                        //check username and password
+
+                        //Toast.makeText(getApplicationContext(), lName.getText().toString() + " is logging in",
+                          //      Toast.LENGTH_SHORT).show();
+
+                        sendUsername(lName);
+
                     }
                 }
         );
+    }
+
+    public void sendUsername(EditText userName) {
+        Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
+        String sendUsername = userName.getText().toString();
+        intent.putExtra(USERNAME, sendUsername);
+        startActivity(intent);
     }
 }

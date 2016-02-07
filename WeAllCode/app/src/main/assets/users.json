@@ -3,12 +3,14 @@
 		"First": "Root",
 		"Last": "Root",
 		"Username": "Root",
-		"Password": "root"
+		"Password": "root",
+	    "Email": ""
 	},
 	{
 		"First": "Kristel",
 		"Last": "Basra",
 		"Username": "klicata",
-		"Password": "password"
+		"Password": "password",
+        "Email": "klicata@asu.edu"
 	}
 ]

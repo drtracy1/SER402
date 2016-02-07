@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean authenticateLogin(String strUsername, String strPassword) {
-        //NetworkDAO if want to use url in the future
 
+        boolean allowLogin = false;
         String strFromFile = "";
         String uppercaseUsername = strUsername.toUpperCase();
 
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             in.read(buffer);
             in.close();
 
-            //turn file into string
+            //turn buffer from file into string
             strFromFile = new String(buffer, "UTF-8");
 
             //find out if username and password match or not
@@ -81,22 +81,22 @@ public class LoginActivity extends AppCompatActivity {
             if(indexWhereUsernameIs != -1) {
                 if (passwordCorrect(strFromFile, strPassword)){
                     //allow user to log in
-                    return true;
+                    allowLogin = true;
                 }
                 else {
                     //ask to reenter username and password
-                    return false;
+                    allowLogin =  false;
                 }
             }
             else {
                 //ask to reenter username and password
-                return false;
+                allowLogin = false;
             }
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return allowLogin;
     }
 
     //find if the username exists, if so get the index number
@@ -104,13 +104,16 @@ public class LoginActivity extends AppCompatActivity {
         try {
             JSONArray array = new JSONArray(strFromFile);
 
+            //get each JSON object in JSON array
             for(int i = 0; i < array.length(); i++)
             {
                 JSONObject obj = array.getJSONObject(i);
                 String str = obj.getString("Username");
 
+                //looking for username entered by user with JSON records
                 if(str.compareToIgnoreCase(strUsername) == 0) {
                     System.out.println("Found user in json file: "+strUsername);
+                    //return the index where the username exists
                     return i;
                 }
             }
@@ -122,22 +125,31 @@ public class LoginActivity extends AppCompatActivity {
         return -1;
     }
 
+    //see if the username matches the password entered
     public boolean passwordCorrect(String strFromFile, String strPassword) {
+
+        boolean correctPassword = false;
+
         try {
+            //get object with username found
             JSONArray array = new JSONArray(strFromFile);
             JSONObject obj = array.getJSONObject(indexWhereUsernameIs);
             String str = obj.getString("Password");
 
+            //password entered must match password on record exactly
             if(str.equals(strPassword)) {
                 System.out.println("Password matches Username in json");
                 //firstName = obj.getString("First"); <--get first name if want to pass it on
-                return true;
+                correctPassword =  true;
+            }
+            else {
+                System.out.println("Password did not match username in json");
+                correctPassword = false;
             }
 
         } catch (JSONException je) {
             je.printStackTrace();
         }
-        System.out.println("Password did not match username in json");
-        return false;
+        return correctPassword;
     }
 }

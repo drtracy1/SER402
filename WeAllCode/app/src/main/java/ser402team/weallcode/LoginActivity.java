@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public final static String USERNAME = "ser402team.weallcode.USERNAME";
     private static int indexWhereUsernameIs = 0;
-   // private static String firstName = ""; <--first name of user in case we want it
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     public void allowLogin(String userName) {
         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
         intent.putExtra(USERNAME, userName);
-        //intent.putExtra(USERNAME, firstName); <--in case we want first name instead of username
         startActivity(intent);
     }
 
@@ -65,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             //read from json file
-            InputStream in = getAssets().open("users.json");
+            InputStream in = getResources().openRawResource(R.raw.users);
             int size = in.available();
             byte [] buffer = new byte[size];
             in.read(buffer);
@@ -139,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
             //password entered must match password on record exactly
             if(str.equals(strPassword)) {
                 System.out.println("Password matches Username in json");
-                //firstName = obj.getString("First"); <--get first name if want to pass it on
                 correctPassword =  true;
             }
             else {

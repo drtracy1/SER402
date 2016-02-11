@@ -20,14 +20,14 @@ public class CreateAccActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View view) {
                         //get username, password and email from user
-                        final EditText newName = (EditText) findViewById(R.id.editName);
-                        final EditText newPwd = (EditText) findViewById(R.id.editPassword);
+                        final EditText newUsername = (EditText) findViewById(R.id.editName);
+                        final EditText newPassword = (EditText) findViewById(R.id.editPassword);
                         final EditText newEmail = (EditText) findViewById(R.id.editEmail);
-                        String strNewName = newName.getText().toString();
-                        String strPassword = newPwd.getText().toString();
+                        String strUsername = newUsername.getText().toString();
+                        String strPassword = newPassword.getText().toString();
                         String strEmail = newEmail.getText().toString();
 
-                        Toast.makeText(getApplicationContext(), strNewName + " created",
+                        Toast.makeText(getApplicationContext(), strUsername + " created",
                                     Toast.LENGTH_SHORT).show();
                     }
                 }

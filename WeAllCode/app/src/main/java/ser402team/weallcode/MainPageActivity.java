@@ -1,5 +1,6 @@
 package ser402team.weallcode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,9 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by CrystalGutierrez on 2/3/2016.
+ * Modified by DanielTracy
  */
 public class MainPageActivity extends AppCompatActivity {
 
@@ -31,6 +34,16 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
         */
+
+        //Changes the current activity to the Question page
+        Button playButton = (Button) findViewById(R.id.playButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPageActivity.this, QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

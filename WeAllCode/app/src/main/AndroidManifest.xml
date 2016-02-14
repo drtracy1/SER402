@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CreateAccActivity"></activity>
+        <activity android:name=".CreateAccActivity" />
+        <activity android:name=".MainPageActivity" />
+        <activity android:name=".QuestionActivity"></activity>
     </application>
 
 </manifest>

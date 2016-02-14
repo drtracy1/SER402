@@ -9,12 +9,58 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ser402team.weallcode.LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="LOGIN ACTIVITY HERE"
-        android:id="@+id/textView2"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center_horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginNameLabel"
+            android:gravity="center"
+            android:text="Login Name"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:inputType="textLongMessage"
+            android:layout_below="@+id/loginNameLabel"
+            android:id="@+id/loginName"
+            android:ems="10"
+            android:layout_marginBottom="50dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordLabel"
+            android:layout_below="@+id/loginName"
+            android:gravity="center"
+            android:text="Password" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:inputType="textPassword"
+            android:layout_below="@+id/passwordLabel"
+            android:id="@+id/password"
+            android:ems="10" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:id="@+id/signInButton"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/password"
+            android:layout_marginTop="40dp"/>
+
+    </RelativeLayout>
 </RelativeLayout>

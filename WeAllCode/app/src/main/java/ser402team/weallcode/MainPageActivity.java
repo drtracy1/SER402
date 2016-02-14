@@ -53,6 +53,11 @@ public class MainPageActivity extends AppCompatActivity {
         return true;
     }
 
+    public void goToAboutUs(View v){
+        Intent intent = new Intent(MainPageActivity.this, AboutUsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -15,10 +15,10 @@
         android:layout_height="wrap_content"
         android:text="Next Question"
         android:id="@+id/nextQuestionButton"
-        android:layout_marginBottom="105dp"
+        android:layout_marginBottom="91dp"
         android:layout_above="@+id/answerText"
-        android:layout_alignRight="@+id/questionTextField"
-        android:layout_alignEnd="@+id/questionTextField" />
+        android:layout_alignLeft="@+id/answerText"
+        android:layout_alignStart="@+id/answerText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,9 +26,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Question Text"
         android:id="@+id/questionTextField"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp" />
+        android:layout_marginTop="95dp"
+        android:layout_below="@+id/returnButton"
+        android:layout_alignLeft="@+id/nextQuestionButton"
+        android:layout_alignStart="@+id/nextQuestionButton" />
 
     <EditText
         android:layout_width="wrap_content"

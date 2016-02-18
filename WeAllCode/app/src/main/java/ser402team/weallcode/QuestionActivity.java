@@ -11,6 +11,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+ *@author daniel tracy
+ */
+
 public class QuestionActivity extends AppCompatActivity {
 
      private ArrayList<String> questionList = new ArrayList<String>();
@@ -31,6 +35,16 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionActivity.this, MainPageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Return button functionality
+        ImageButton chatButton = (ImageButton) findViewById(R.id.chatIconButton);
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuestionActivity.this, ChatActivity.class);
                 startActivity(intent);
             }
         });

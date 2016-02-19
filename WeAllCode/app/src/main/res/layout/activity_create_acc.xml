@@ -9,59 +9,101 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ser402team.weallcode.CreateAccActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editPassword"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="136dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="User Name"
-        android:ems="10"
-        android:id="@+id/editName"
-        android:layout_marginTop="71dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_alignStart="@+id/editEmail" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editEmail"
-        android:layout_below="@+id/editName"
-        android:layout_alignLeft="@+id/editPassword"
-        android:layout_alignStart="@+id/editPassword"
-        android:layout_marginTop="54dp"
-        android:text="E-mail" />
-
+    <!-- Title -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Password"
-        android:id="@+id/textView"
-        android:layout_above="@+id/editPassword"
-        android:layout_alignLeft="@+id/editPassword"
-        android:layout_alignStart="@+id/editPassword" />
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Create Account"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        >
+
+        <!-- new user enters a unique username -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editNameLabel"
+            android:gravity="center"
+            android:text="User Name"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editName"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editNameLabel" />
+
+        <!-- user enters a unique email -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editEmailLabel"
+            android:gravity="center"
+            android:text="Email"
+            android:layout_below="@+id/editName"
+            android:paddingTop="7dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editEmail"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editEmailLabel" />
+
+        <!-- user enters a password -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPasswordLabel1"
+            android:gravity="center"
+            android:text="Password"
+            android:layout_below="@+id/editEmail"
+            android:paddingTop="7dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editPassword1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editPasswordLabel1"/>
+
+        <!-- user confirms password -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPasswordLabel2"
+            android:gravity="center"
+            android:text="Confirm Password"
+            android:layout_below="@+id/editPassword1"
+            android:paddingTop="7dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editPassword2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editPasswordLabel2"/>
+
+    </RelativeLayout>
+
+    <!-- done checks user credentials -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,16 +112,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New ToggleButton"
-        android:id="@+id/toggleButton"
-        android:layout_alignTop="@+id/editEmail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="352dp"
-        android:layout_marginStart="352dp" />
 
 </RelativeLayout>

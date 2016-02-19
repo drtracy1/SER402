@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import android.util.Patterns;
+
 public class CreateAccActivity extends AppCompatActivity {
 
     public final static String USERNAME = "ser402team.weallcode.USERNAME";
@@ -25,30 +27,61 @@ public class CreateAccActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         //get username, password and email from user
                         final EditText newUsername = (EditText) findViewById(R.id.editName);
-                        final EditText newPassword = (EditText) findViewById(R.id.editPassword);
+                        final EditText newPassword1 = (EditText) findViewById(R.id.editPassword1);
+                        final EditText newPassword2 = (EditText) findViewById(R.id.editPassword2);
                         final EditText newEmail = (EditText) findViewById(R.id.editEmail);
                         String strUsername = newUsername.getText().toString();
-                        String strPassword = newPassword.getText().toString();
+                        String strPassword1 = newPassword1.getText().toString();
+                        String strPassword2 = newPassword2.getText().toString();
                         String strEmail = newEmail.getText().toString();
 
                         Context context = getBaseContext();
                         JsonHandler jh = new JsonHandler();
 
-                        //check for already used username
-                        if(!jh.usernameExists(context, filename ,strUsername)){
-                            //add new username
-                            jh.createUsername(context, filename, strUsername, strPassword, strEmail);
-                            allowLogin(strUsername);
+                        //check if username entered is valid
+                        if (!isValid(strUsername) || strUsername.length() == 0) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Username is not valid. Please no special characters or spaces.",
+                                    Toast.LENGTH_LONG).show();
                         }
-                        else {
+                        //check if email is valid
+                        else if(!isEmailValid(strEmail)) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Email is not valid. Please enter a valid email address.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        //check if passwords match
+                        else if(!doPasswordsMatch(strPassword1, strPassword2)) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Passwords do not match. Please try again.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        //check if username exists
+                        else if(jh.usernameExists(context, filename, strUsername)) {
                             Toast.makeText(getApplicationContext(), strUsername + " already exists",
                                     Toast.LENGTH_SHORT).show();
                         }
-
+                        //if everything validates, allow account to be created and log in
+                        else {
+                            jh.createUsername(context, filename, strUsername, strPassword1, strEmail);
+                            allowLogin(strUsername);
+                        }
                     }
                 }
         );
 
+    }
+
+    private boolean isValid(String str) {
+        return str.matches("[a-zA-Z0-9]*");
+    }
+
+    private boolean isEmailValid(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean doPasswordsMatch(String pwd1, String pwd2) {
+        return pwd1.equals(pwd2);
     }
 
     private void allowLogin(String userName) {

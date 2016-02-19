@@ -1,10 +1,13 @@
 package ser402team.weallcode;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,6 +31,10 @@ public class QuestionActivity extends AppCompatActivity {
         addQuestionToList("Sample Question 1");
         addQuestionToList("Sample Question 2");
         addQuestionToList("Sample Question 3");
+
+        //add timer text
+        startTimer();
+
 
         //Return button functionality
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
@@ -72,5 +79,23 @@ public class QuestionActivity extends AppCompatActivity {
         Random rand = new Random();
         int num = rand.nextInt(questionList.size());
         return num;
+    }
+
+    protected void startTimer() {
+        final EditText timerTextField = (EditText) findViewById(R.id.timer);
+
+        new CountDownTimer(31000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timerTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                if((millisUntilFinished / 1000) < 5) {
+                    timerTextField.setBackgroundColor(Color.RED);
+                }
+            }
+
+            public void onFinish() {
+                timerTextField.setText("done!");
+            }
+        }.start();
     }
 }

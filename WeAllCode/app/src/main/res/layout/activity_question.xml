@@ -59,4 +59,12 @@
         android:layout_alignParentStart="true"
         android:src="@android:drawable/ic_menu_revert" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:text="seconds remaining: 30"
+        android:layout_toRightOf="@id/returnButton"
+        android:layout_marginLeft="75dp"/>
+
 </RelativeLayout>

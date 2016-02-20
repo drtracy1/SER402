@@ -9,7 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
         /*
         *
         * @author Wesley Coomber Wesley.Coomber@asu.edu
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         //logoView1 = (ImageView) findViewById(R.id.logoView1);
        // logoView1.setImageResource(R.drawable.logo);
 
@@ -40,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+/*
+        Button buttonLog = (Button)findViewById(R.id.button_Login);
+
+        buttonLog.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }});
+            */
     }
 
     @Override
@@ -66,12 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToLogin(View v){
         //android.util.Log.w(getClass().getSimpleName(), "goToDialog");
+        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
+        v.startAnimation(animTranslate);
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
     public void goToCreateAcc(View v){
         //android.util.Log.w(getClass().getSimpleName(), "goToDialog");
+        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
+        v.startAnimation(animTranslate);
         Intent intent = new Intent(MainActivity.this, CreateAccActivity.class);
         startActivity(intent);
     }

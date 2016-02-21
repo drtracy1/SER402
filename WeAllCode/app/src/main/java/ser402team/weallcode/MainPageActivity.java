@@ -58,6 +58,11 @@ public class MainPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToAvatar(View v){
+        Intent intent = new Intent(MainPageActivity.this, AvatarActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

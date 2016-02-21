@@ -27,6 +27,7 @@
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".AvatarActivity"></activity>
     </application>
 
 </manifest>

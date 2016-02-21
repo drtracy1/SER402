@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ser402team.weallcode.MainPageActivity">
+    tools:context="ser402team.weallcode.MainPageActivity"
+    android:transitionGroup="false"
+    android:touchscreenBlocksFocus="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +36,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp" />
+        android:layout_marginBottom="33dp"
+        android:onClick="goToAvatar" />
 
     <Button
         android:layout_width="wrap_content"

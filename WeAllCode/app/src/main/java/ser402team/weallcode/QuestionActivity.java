@@ -64,6 +64,8 @@ public class QuestionActivity extends AppCompatActivity {
                 int index = genRandInt();
                 TextView questionText = (TextView)findViewById(R.id.questionTextField);
                 questionText.setText(questionList.get(index));
+                //resets the timer for new question.
+                startTimer();
             }
         });
 
@@ -81,20 +83,30 @@ public class QuestionActivity extends AppCompatActivity {
         return num;
     }
 
+
     protected void startTimer() {
         final EditText timerTextField = (EditText) findViewById(R.id.timer);
+        timerTextField.setBackgroundColor(Color.TRANSPARENT);
 
         new CountDownTimer(31000, 1000) {
             
             public void onTick(long millisUntilFinished) {
-                timerTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-                if((millisUntilFinished / 1000) < 5) {
+                timerTextField.setText(" Time remaining: " + millisUntilFinished / 1000 + " ");
+                if((millisUntilFinished / 1000) == 5) {
+                    timerTextField.setBackgroundColor(Color.RED);
+                }else if ((millisUntilFinished / 1000) == 4){
+                    timerTextField.setBackgroundColor(Color.TRANSPARENT);
+                }else if ((millisUntilFinished / 1000) == 3){
+                    timerTextField.setBackgroundColor(Color.RED);
+                }else if ((millisUntilFinished / 1000) == 2) {
+                    timerTextField.setBackgroundColor(Color.TRANSPARENT);
+                }else if ((millisUntilFinished / 1000) <= 1){
                     timerTextField.setBackgroundColor(Color.RED);
                 }
             }
-
             public void onFinish() {
-                timerTextField.setText("done!");
+                timerTextField.setText(" Times Up! ");
+
             }
         }.start();
     }

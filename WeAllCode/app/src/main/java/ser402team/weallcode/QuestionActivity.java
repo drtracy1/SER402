@@ -2,6 +2,7 @@ package ser402team.weallcode;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,6 +88,7 @@ public class QuestionActivity extends AppCompatActivity {
     protected void startTimer() {
         final EditText timerTextField = (EditText) findViewById(R.id.timer);
         timerTextField.setBackgroundColor(Color.TRANSPARENT);
+        timerTextField.setTypeface(Typeface.DEFAULT);
 
         new CountDownTimer(31000, 1000) {
             
@@ -106,6 +108,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
             public void onFinish() {
                 timerTextField.setText(" Times Up! ");
+                timerTextField.setTypeface(Typeface.DEFAULT_BOLD);
 
             }
         }.start();

@@ -17,14 +17,15 @@
         android:text="Create Account"
         android:id="@+id/textView2"
         android:gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
         >
 
         <!-- new user enters a unique username -->

@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class QuestionActivity extends AppCompatActivity {
 
-     private ArrayList<String> questionList = new ArrayList<String>();
+    private ArrayList<String> questionList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         //add timer text
         startTimer();
-
 
         //Return button functionality
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
@@ -64,6 +63,9 @@ public class QuestionActivity extends AppCompatActivity {
                 int index = genRandInt();
                 TextView questionText = (TextView)findViewById(R.id.questionTextField);
                 questionText.setText(questionList.get(index));
+
+                //add timer text
+                startTimer();
             }
         });
 
@@ -83,18 +85,20 @@ public class QuestionActivity extends AppCompatActivity {
 
     protected void startTimer() {
         final EditText timerTextField = (EditText) findViewById(R.id.timer);
+        timerTextField.setBackgroundColor(Color.LTGRAY);
 
         new CountDownTimer(31000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timerTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-                if((millisUntilFinished / 1000) < 5) {
+                if((millisUntilFinished / 1000) <= 5) {
                     timerTextField.setBackgroundColor(Color.RED);
                 }
             }
 
             public void onFinish() {
-                timerTextField.setText("done!");
+                timerTextField.setBackgroundColor(Color.LTGRAY);
+                timerTextField.setText("Times up!");
             }
         }.start();
     }

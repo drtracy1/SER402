@@ -16,10 +16,11 @@ import java.io.IOException;
  */
 public class JsonHandler {
 
-    private static final String usernameKey = "Username";
-    private static final String passwordKey = "Password";
-    private static final String emailKey = "Email";
-    private static final String pointsKey = "Points";
+    private static final String USERNAME_KEY = "Username";
+    private static final String PASSWORD_KEY = "Password";
+    private static final String EMAIL_KEY = "Email";
+    private static final String POINTS_KEY = "Points";
+
     private static int indexWhereUsernameIs = 0;
 
     public void createUsername(Context context, String filename, String username, String password, String email) {
@@ -46,10 +47,10 @@ public class JsonHandler {
             }
 
             //create object and add to array, then parse to string
-            object.put(usernameKey, username);
-            object.put(passwordKey, password);
-            object.put(emailKey, email);
-            object.put(pointsKey, new Integer(0));
+            object.put(USERNAME_KEY, username);
+            object.put(PASSWORD_KEY, password);
+            object.put(EMAIL_KEY, email);
+            object.put(POINTS_KEY, new Integer(0));
             array.put(object);
             String stringify = array.toString();
 
@@ -126,7 +127,7 @@ public class JsonHandler {
             for(int i = 0; i < array.length(); i++)
             {
                 JSONObject obj = array.getJSONObject(i);
-                String str = obj.getString(usernameKey);
+                String str = obj.getString(USERNAME_KEY);
 
                 //looking for username entered by user with JSON records
                 if(str.compareToIgnoreCase(strUsername) == 0) {
@@ -152,7 +153,7 @@ public class JsonHandler {
             //get object with username found
             JSONArray array = new JSONArray(strFromFile);
             JSONObject obj = array.getJSONObject(indexWhereUsernameIs);
-            String str = obj.getString(passwordKey);
+            String str = obj.getString(PASSWORD_KEY);
 
             //password entered must match password on record exactly
             if(str.equals(strPassword)) {

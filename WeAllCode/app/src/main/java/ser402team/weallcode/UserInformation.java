@@ -2,6 +2,8 @@ package ser402team.weallcode;
 
 /**
  * Created by KBasra on 2/23/16.
+ *
+ * Use this class to upload values to the firebase only
  */
 public class UserInformation {
 

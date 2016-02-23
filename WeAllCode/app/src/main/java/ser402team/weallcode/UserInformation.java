@@ -10,9 +10,7 @@ public class UserInformation {
     private String email = "";
     private int points = 0;
 
-    UserInformation() {
-
-    }
+    UserInformation() {}
 
     UserInformation(String un, String em, String pw) {
         this.username = un;
@@ -20,38 +18,19 @@ public class UserInformation {
         this.email = em;
     }
 
-    public void setPassword(String pw) {
-        this.password = pw;
-    }
+    public void setPassword(String pw) { this.password = pw; }
 
-    public void setEmail(String em) {
-        this.email = em;
+    public void setEmail(String em) { this.email = em; }
 
-    }
+    public void addPoints(int num) { this.points += num; }
 
-    public void addPoints(int num) {
-        this.points += num;
+    public void setUsername(String un) { this.username = un; }
 
-    }
+    public String getUsername() { return this.username; }
 
-    public void setUsername(String un) {
-        this.username = un;
-    }
+    public String getPassword() { return this.password; }
 
-    public String getUsername() {
-        return this.username;
-    }
+    public String getEmail() { return this.email; }
 
-    public String getPassword() {
-        return this.password;
-
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public int getPoints() {
-        return this.points;
-    }
+    public int getPoints() { return this.points; }
 }

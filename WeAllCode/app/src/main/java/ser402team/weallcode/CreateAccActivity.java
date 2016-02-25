@@ -37,7 +37,7 @@ public class CreateAccActivity extends AppCompatActivity {
 
         //connect to firebase
         Firebase.setAndroidContext(this);
-        final Firebase REF = new Firebase("https://crackling-heat-8644.firebaseio.com/");
+        final Firebase REF = new Firebase("https://weallcode-users.firebaseio.com/");
 
         Button createAccountButt = (Button) findViewById(R.id.buttonDone);
         createAccountButt.setOnClickListener(

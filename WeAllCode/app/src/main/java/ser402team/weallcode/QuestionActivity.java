@@ -13,25 +13,23 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /*
  *@author daniel tracy
+ * Timer by Kristel
  */
 
 public class QuestionActivity extends AppCompatActivity {
 
-     private ArrayList<String> questionList = new ArrayList<String>();
+     private ArrayList<QuestionAnswer> questionList = new ArrayList<QuestionAnswer>();
+     private boolean[] isUsed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-
-        //Here, you should populate the question list
-        addQuestionToList("Sample Question 1");
-        addQuestionToList("Sample Question 2");
-        addQuestionToList("Sample Question 3");
 
         //add timer text
         startTimer();
@@ -57,14 +55,32 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
+        //Generate question list
+        generateQAList();
+        //Create an isUsed list to determine which questions have been used
+        isUsed = new boolean[questionList.size()];
+        Arrays.fill(isUsed, Boolean.FALSE);
+
         //Next question functionality
         Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int index = genRandInt();
+                int index = 0;
+                //Check to see if all the questions have been used or not
+                if(isAllTrue(isUsed) == false) {
+                    index = genRandInt();
+                    while (isUsed[index] == true) {
+                        index = genRandInt();
+                    }
+                }
                 TextView questionText = (TextView)findViewById(R.id.questionTextField);
-                questionText.setText(questionList.get(index));
+                if(isAllTrue(isUsed) == false) {
+                    questionText.setText(questionList.get(index).getQuestion());
+                } else {
+                    questionText.setText("End of Questions");
+                }
+                isUsed[index] = true;
                 //resets the timer for new question.
                 startTimer();
             }
@@ -72,10 +88,27 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
-    //Add the string to the list
-    protected void addQuestionToList(String question) {
-        questionList.add(question);
+    //Here you should populate the QA list
+    protected void generateQAList() {
+        QuestionAnswer qA1 = new QuestionAnswer("1 kilobyte is equal to: ", "1024 bytes", "1000 bytes, duh", "1064 bytes");
+        QuestionAnswer qA2 = new QuestionAnswer("What do you use to repeat segments of code?", "Loops", "Rings", "Repeaters");
+        QuestionAnswer qA3 = new QuestionAnswer("What do strings represent?", "Character sequences", "Cotton", "Integers");
+        QuestionAnswer qA4 = new QuestionAnswer("What does CPU stand for?", "Central Processing Unit", "Cat Plays Undertale", "Computer Processor Unit");
+        QuestionAnswer qA5 = new QuestionAnswer("What are Window's and Mac OSX's software called?", "Operating Systems", "Computers", "Nouns");
+        QuestionAnswer qA6 = new QuestionAnswer("Java is considered a what?", "Programming Language", "Delicious Coffee", "Operating System");
+        QuestionAnswer qA7 = new QuestionAnswer("A GPU's purpose is to: ", "Process Graphics", "Go Fast", "Save your Data");
+
+        addQuestionToList(qA1);
+        addQuestionToList(qA2);
+        addQuestionToList(qA3);
+        addQuestionToList(qA4);
+        addQuestionToList(qA5);
+        addQuestionToList(qA6);
+        addQuestionToList(qA7);
     }
+
+    //Add the string to the list
+    protected void addQuestionToList(QuestionAnswer qA) {questionList.add(qA);}
 
     //Use the size of the question list to return a random integer index
     protected int genRandInt() {
@@ -84,6 +117,15 @@ public class QuestionActivity extends AppCompatActivity {
         return num;
     }
 
+    //Check if the boolean array is all true or not
+    protected boolean isAllTrue(boolean[] arr) {
+        for(int i=0; i<arr.length; i++) {
+            if(arr[i] == false) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     protected void startTimer() {
         final EditText timerTextField = (EditText) findViewById(R.id.timer);

@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Question Text"
+        android:text="Press &quot;Next Question&quot; to Start!"
         android:id="@+id/questionTextField"
         android:layout_marginTop="95dp"
         android:layout_below="@+id/returnButton"

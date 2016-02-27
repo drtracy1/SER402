@@ -75,6 +75,16 @@
                 android:src="@drawable/tracy1"
                 android:layout_alignLeft="@+id/imageView5"
                 android:layout_alignStart="@+id/imageView5" />
+
+            <ImageButton
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:id="@+id/imageButton"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/web1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:onClick="showInfo" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

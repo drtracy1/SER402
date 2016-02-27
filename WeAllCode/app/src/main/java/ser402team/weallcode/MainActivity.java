@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         //android.util.Log.w(getClass().getSimpleName(), "goToDialog");
         final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
         v.startAnimation(animTranslate);
+        //Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }

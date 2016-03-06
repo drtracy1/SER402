@@ -64,10 +64,10 @@
         android:id="@+id/answer1"
         android:onClick="onClick"
         android:clickable="true"
-        android:layout_marginTop="94dp"
+        android:layout_marginTop="72dp"
         android:layout_below="@+id/questionTextField"
-        android:layout_alignLeft="@+id/questionTextField"
-        android:layout_alignStart="@+id/questionTextField" />
+        android:layout_toStartOf="@+id/timer"
+        android:layout_toLeftOf="@+id/timer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,7 +77,8 @@
         android:onClick="onClick"
         android:clickable="true"
         android:id="@+id/answer2"
-        android:layout_below="@+id/answer1"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/answer3"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -91,5 +92,16 @@
         android:layout_alignTop="@+id/answer1"
         android:layout_alignRight="@+id/questionTextField"
         android:layout_alignEnd="@+id/questionTextField" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/correct"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/answer2"
+        android:layout_alignRight="@+id/timer"
+        android:layout_alignEnd="@+id/timer"
+        android:layout_toEndOf="@+id/answer1"
+        android:layout_toRightOf="@+id/answer1" />
 
 </RelativeLayout>

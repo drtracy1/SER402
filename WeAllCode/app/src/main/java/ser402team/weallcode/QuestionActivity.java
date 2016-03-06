@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     private ArrayList<QuestionAnswer> questionList = new ArrayList<QuestionAnswer>();
     private boolean[] isUsed;
+    private QuestionAnswer current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,10 @@ public class QuestionActivity extends AppCompatActivity {
         //Generate question list
         generateQAList(REF);
 
+        final TextView answerButton1 = (TextView) findViewById(R.id.answer1);
+        final TextView answerButton2 = (TextView) findViewById(R.id.answer2);
+        final TextView answerButton3 = (TextView) findViewById(R.id.answer3);
+
         //Create an isUsed list to determine which questions have been used
         isUsed = new boolean[questionList.size()];
         Arrays.fill(isUsed, Boolean.FALSE);
@@ -82,27 +88,31 @@ public class QuestionActivity extends AppCompatActivity {
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Clear the correct/incorrect imageview
+                ImageView img = (ImageView) findViewById(R.id.correct);
+                img.setImageResource(0);
+
                 int index = 0;
 
                 /* Firebase has been a bit of a pain, for some reason android would not complete
                  * generateQAList method before it sets up the isUsed, so it was always empty  */
-                if(isUsed.length == 0) {
+                if (isUsed.length == 0) {
                     //Create an isUsed list to determine which questions have been used
                     isUsed = new boolean[questionList.size()];
                     Arrays.fill(isUsed, Boolean.FALSE);
                 }
 
                 //Check to see if all the questions have been used or not
-                if(isAllTrue(isUsed) == false) {    //if not all the questions have been touched
+                if (isAllTrue(isUsed) == false) {    //if not all the questions have been touched
                     index = genRandInt();           //get random element number
                     while (isUsed[index] == true) { //if that random number is already used
                         index = genRandInt();       //get another
                     }
                 }
 
-                TextView questionText = (TextView)findViewById(R.id.questionTextField);
+                TextView questionText = (TextView) findViewById(R.id.questionTextField);
 
-                if(isAllTrue(isUsed) == false) {     //if not all questions have been used
+                if (isAllTrue(isUsed) == false) {     //if not all questions have been used
                     questionText.setText(questionList.get(index).getQuestion()); //get index to question from last if block
                 } else {                            //all questions have been used
                     questionText.setText("End of Questions");
@@ -111,9 +121,74 @@ public class QuestionActivity extends AppCompatActivity {
 
                 //resets the timer for new question.
                 startTimer();
+                current = questionList.get(index); //Get the current QuestionAnswer in the list
+
+                //Initialize unique answers for every questions
+                answerButton1.setText(current.getAnswerFromList());
+                answerButton2.setText(current.getAnswerFromList());
+                answerButton3.setText(current.getAnswerFromList());
             }
         });
 
+        //The first answer button in the UI
+        answerButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Used stringbuilder to convert textview into a string
+                final StringBuilder sb = new StringBuilder(answerButton1.getText().length());
+                sb.append(answerButton1.getText());
+                String answer1 = sb.toString();
+
+                //If textview is equal to the correct answer, change the imageview
+                if(answer1.equals(current.getCorrectAnswer())) {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.correct);
+                } else {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.incorrect);
+                }
+            }
+        });
+
+        //The second answer button in the UI
+        answerButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Used stringbuilder to convert textview into a string
+                final StringBuilder sb = new StringBuilder(answerButton2.getText().length());
+                sb.append(answerButton2.getText());
+                String answer2 = sb.toString();
+
+                //If textview is equal to the correct answer, change the imageview
+                if(answer2.equals(current.getCorrectAnswer())) {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.correct);
+                } else {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.incorrect);
+                }
+            }
+        });
+
+        //The third answer button in the UI
+        answerButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Used stringbuilder to convert textview into a string
+                final StringBuilder sb = new StringBuilder(answerButton3.getText().length());
+                sb.append(answerButton3.getText());
+                String answer3 = sb.toString();
+
+                //If textview is equal to the correct answer, change the imageview
+                if(answer3.equals(current.getCorrectAnswer())) {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.correct);
+                } else {
+                    ImageView img = (ImageView) findViewById(R.id.correct);
+                    img.setImageResource(R.drawable.incorrect);
+                }
+            }
+        });
     }
 
     //Here you should populate the QA list
@@ -150,6 +225,13 @@ public class QuestionActivity extends AppCompatActivity {
     protected int genRandInt() {
         Random rand = new Random();
         int num = rand.nextInt(questionList.size());
+        return num;
+    }
+
+    //Generates a random integer between 0 and max
+    protected int genRandInt(int max) {
+        Random rand = new Random();
+        int num = rand.nextInt(max);
         return num;
     }
 

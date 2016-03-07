@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginBut: UIButton!
     @IBOutlet weak var createAccBut: UIButton!
     
-    @IBAction func setDefaultLabelText(sender: UIButton) {
+    @IBAction func loginButtonSample(sender: UIButton) {
         //mealNameLabel.text = "Default Text"
         
        

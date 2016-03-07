@@ -30,7 +30,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
                                                 <state key="normal" title="Login"/>
                                                 <connections>
-                                                    <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n5Y-9p-R6c"/>
+                                                    <action selector="loginButtonSample:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j7c-hx-SO8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erl-Jp-SpR">
@@ -53,7 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="createAccBut" destination="erl-Jp-SpR" id="jgy-pF-5TV"/>
-                        <outlet property="loginBut" destination="lBH-70-fyi" id="6Dh-L8-Yto"/>
+                        <outlet property="loginBut" destination="lBH-70-fyi" id="Hm7-jD-A48"/>
                         <outlet property="stackview" destination="2Hk-3g-q9a" id="hef-LL-t5a"/>
                     </connections>
                 </viewController>

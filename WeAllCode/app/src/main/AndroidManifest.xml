@@ -28,8 +28,10 @@
             android:name=".AboutUsActivity"
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".AvatarActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".AvatarActivity" />
+        <activity android:name=".ChatAvailability" />
+        <activity android:name=".SearchFriendActivity" />
     </application>
 
 </manifest>

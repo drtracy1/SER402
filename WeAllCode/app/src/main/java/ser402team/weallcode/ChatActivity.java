@@ -1,17 +1,17 @@
 package ser402team.weallcode;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.Date;
  * Being used under the Code Project Open Licsense
  */
 
-public class ChatActivity extends ActionBarActivity {
+public class ChatActivity extends AppCompatActivity {
 
     private EditText messageET;
     private ListView messagesContainer;
@@ -34,10 +34,40 @@ public class ChatActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        //initControls_Old();
+
+        //connect to firebase
+        Firebase.setAndroidContext(this);
+        final Firebase REF = new Firebase("https://weallcode-chat.firebaseio.com/");
         initControls();
     }
 
     private void initControls() {
+
+        messagesContainer = (ListView) findViewById(R.id.messagesContainer); //view all messages
+        messageET = (EditText) findViewById(R.id.messageEdit); //user types message before sending
+        sendBtn = (Button) findViewById(R.id.chatSendButton); //send button
+
+        TextView meLabel = (TextView) findViewById(R.id.meLbl);  //users side of the msg container
+        TextView companionLabel = (TextView) findViewById(R.id.friendLabel); //friend's side
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container); //whole page
+
+        companionLabel.setText("My Buddy");// Hard Coded
+
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String messageText = messageET.getText().toString();
+                if (TextUtils.isEmpty(messageText)) {
+                    return;
+                }
+                Toast.makeText(getApplicationContext(), "Send Button Pushed",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initControls_Old() {
         messagesContainer = (ListView) findViewById(R.id.messagesContainer);
         messageET = (EditText) findViewById(R.id.messageEdit);
         sendBtn = (Button) findViewById(R.id.chatSendButton);

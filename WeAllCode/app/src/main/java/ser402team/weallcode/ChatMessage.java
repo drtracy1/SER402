@@ -19,7 +19,7 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public boolean getIsme() {
+    public boolean getIsMe() {
         return isMe;
     }
 

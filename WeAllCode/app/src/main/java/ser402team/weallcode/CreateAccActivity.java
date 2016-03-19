@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class CreateAccActivity extends AppCompatActivity {
 
-    public final static String USERNAME = "ser402team.weallcode.USERNAME";
+    public final static String USERNAME = "ser402team.weallcode.FRIEND_USERNAME";
     private static String usernameLowercase = "";
     private static String username = "";
     private static String password1 = "";

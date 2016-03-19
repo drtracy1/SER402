@@ -1,5 +1,6 @@
 package ser402team.weallcode;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.firebase.client.ValueEventListener;
 
 public class SearchFriendActivity extends AppCompatActivity {
 
+    public static final String FRIEND_USERNAME = "ser402team.weallcode.FRIEND_USERNAME";
     private static final int EMPTY = 0;
     private static String usernameLowercase = "";
     private static String usernameStr = "";
@@ -80,6 +82,16 @@ public class SearchFriendActivity extends AppCompatActivity {
                     String strMsg = "Send a message to "+getUsername();
                     showFoundUsername.setText(strMsg);
 
+                    //set up the continue button to allow user to send message to the searched username
+                    Button continueButton = (Button) findViewById(R.id.continueButton);
+                    continueButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //intent
+                            goToChatActivity();
+                        }
+                    });
+
                 }
                 //account not found
                 else {
@@ -93,5 +105,12 @@ public class SearchFriendActivity extends AppCompatActivity {
                 System.out.println("There was an error");
             }
         });
+    }
+
+    //send user to the chat activity page
+    public void goToChatActivity() {
+        Intent intent = new Intent(SearchFriendActivity.this, ChatActivity.class);
+        intent.putExtra(FRIEND_USERNAME, getUsername());
+        startActivity(intent);
     }
 }

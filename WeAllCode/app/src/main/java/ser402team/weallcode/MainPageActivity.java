@@ -17,10 +17,18 @@ import android.widget.Button;
  */
 public class MainPageActivity extends AppCompatActivity {
 
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
+    public static String myUsername = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        //get username from LoginActivity, but if callback then issues may arise (looking into later)
+        //Bundle bund = getIntent().getExtras();
+        //myUsername = bund.getString(MY_USERNAME);
+
         /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

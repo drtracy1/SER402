@@ -3,9 +3,7 @@ package ser402team.weallcode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,7 +21,8 @@ import java.util.Date;
  * @author JoCodes
  * Being used under the Code Project Open Licsense
  *
- * @update Kristel Basra
+ * @update Kristel Basra 3/2016
+ * Pushes messages up to Firebase db
  *
  */
 
@@ -31,11 +30,14 @@ public class ChatActivity extends AppCompatActivity {
 
     public static final String FIREBASE_URL = "https://weallcode-chat.firebaseio.com/";
     public static final String FRIEND_USERNAME = "ser402team.weallcode.FRIEND_USERNAME";
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private EditText messageET;
     private ListView messagesContainer;
     private Button sendBtn;
     private ChatAdapter adapter;
     private ArrayList<ChatMessage> chatHistory;
+    private String friendUsername = "";
+    private String myUsername = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,14 @@ public class ChatActivity extends AppCompatActivity {
 
         //get username from SearchFriendActivity
         Bundle bund = getIntent().getExtras();
-        String friendUsername = bund.getString(FRIEND_USERNAME);
+        friendUsername = bund.getString(FRIEND_USERNAME);
+        myUsername = bund.getString(MY_USERNAME);
 
-        initControls(REF, friendUsername);
+
+        initControls(REF);
     }
 
-    protected void initControls(final Firebase REF, String friend) {
+    protected void initControls(final Firebase REF) {
         messagesContainer = (ListView) findViewById(R.id.messagesContainer); //allow to display all messages as they come
         messageET = (EditText) findViewById(R.id.messageEdit); //user types message before sending
         sendBtn = (Button) findViewById(R.id.chatSendButton); //send button
@@ -63,23 +67,10 @@ public class ChatActivity extends AppCompatActivity {
         TextView companionLabel = (TextView) findViewById(R.id.friendLabel); //friend's side
 
         //chat room setup
-        companionLabel.setText(friend); //set friend username on chat room page
-        meLabel.setText("Me"); //Hard coded
+        companionLabel.setText(friendUsername); //set friend username on chat room page
+        meLabel.setText(myUsername); //set username of the user currently logged in
         loadDummyHistory();
 
-        /*
-        messageET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_NULL && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    //sendMessage();
-                    Toast.makeText(getApplicationContext(), "sendMessage()",
-                            Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
-        */
 
         //send message if there is text entered
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,43 +95,6 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    /*
-    private void initControls(String friend) {
-
-        messagesContainer = (ListView) findViewById(R.id.messagesContainer); //view all messages
-        messageET = (EditText) findViewById(R.id.messageEdit); //user types message before sending
-        sendBtn = (Button) findViewById(R.id.chatSendButton); //send button
-
-        TextView meLabel = (TextView) findViewById(R.id.meLbl);  //users side of the msg container
-        TextView companionLabel = (TextView) findViewById(R.id.friendLabel); //friend's side
-        //RelativeLayout container = (RelativeLayout) findViewById(R.id.container); //whole page
-
-        //chat room setup
-        companionLabel.setText(friend); //set friend username on chat room page
-        meLabel.setText("Me"); //Hard coded
-
-        //send message if there is text entered
-        sendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String messageText = messageET.getText().toString();
-                if (TextUtils.isEmpty(messageText)) {
-                    return;
-                }
-
-                ChatMessage chatMessage = new ChatMessage();
-                chatMessage.setMessage(messageText);
-                chatMessage.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-                chatMessage.setMe(true);
-
-                messageET.setText(""); //reset edit text line
-
-                displayMessage(chatMessage);
-
-            }
-        });
-    }
-    */
 
     private void initControls_Old() {
         messagesContainer = (ListView) findViewById(R.id.messagesContainer);

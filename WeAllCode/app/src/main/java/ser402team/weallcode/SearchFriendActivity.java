@@ -17,9 +17,11 @@ import com.firebase.client.ValueEventListener;
 public class SearchFriendActivity extends AppCompatActivity {
 
     public static final String FRIEND_USERNAME = "ser402team.weallcode.FRIEND_USERNAME";
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private static final int EMPTY = 0;
     private static String usernameLowercase = "";
-    private static String usernameStr = "";
+    private static String friendUsernameStr = "";
+    private static String myUsername = "";
     private static Button selectButton = null;
     private static TextView showFoundUsername = null;
 
@@ -31,6 +33,10 @@ public class SearchFriendActivity extends AppCompatActivity {
         //connect to firebase
         Firebase.setAndroidContext(this);
         final Firebase REF = new Firebase("https://weallcode-users.firebaseio.com/");
+
+        //get current logged in username
+        Bundle bund = getIntent().getExtras();
+        myUsername = bund.getString(MY_USERNAME);
 
         //hide add/select button until a username has been searched
         selectButton = (Button) findViewById(R.id.continueButton);
@@ -44,7 +50,7 @@ public class SearchFriendActivity extends AppCompatActivity {
                 EditText searchingUsername = (EditText) findViewById(R.id.searchUsername);
                 //username was entered, set up string and search for username
                 if(searchingUsername.length() != EMPTY) {
-                    setUsername(searchingUsername.getText().toString());
+                    friendUsernameStr = searchingUsername.getText().toString();
                     setUsernameLowercase();
                     findUsername(REF);
                 }
@@ -58,9 +64,8 @@ public class SearchFriendActivity extends AppCompatActivity {
     }
 
     //setters and getters
-    private void setUsername(String un) { usernameStr = un; }
     private void setUsernameLowercase() { usernameLowercase = getUsername().toLowerCase(); }
-    private String getUsername() { return usernameStr; }
+    private String getUsername() { return friendUsernameStr; }
     private String getUsernameLowercase() { return usernameLowercase; }
 
     protected void findUsername(Firebase REF) {
@@ -111,6 +116,7 @@ public class SearchFriendActivity extends AppCompatActivity {
     public void goToChatActivity() {
         Intent intent = new Intent(SearchFriendActivity.this, ChatActivity.class);
         intent.putExtra(FRIEND_USERNAME, getUsername());
+        intent.putExtra(MY_USERNAME, myUsername);
         startActivity(intent);
     }
 }

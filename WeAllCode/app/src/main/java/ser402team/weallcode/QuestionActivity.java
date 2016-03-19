@@ -31,13 +31,19 @@ import java.util.Random;
  *@author daniel tracy
  * Timer and retrieve DB data methods by Kristel
  * Timer updated by Crystal
+ *
+ * @update Kristel Basra 3/19/2016
+ * Able to get username to this page
  */
 
 public class QuestionActivity extends AppCompatActivity {
 
+    public static final String FIREBASE_URL = "https://weallcode-questions.firebaseio.com/";
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private ArrayList<QuestionAnswer> questionList = new ArrayList<QuestionAnswer>();
     private boolean[] isUsed;
     private QuestionAnswer current;
+    private String myUsername = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         //connect to firebase
         Firebase.setAndroidContext(this);
-        final Firebase REF = new Firebase("https://weallcode-questions.firebaseio.com/");
+        final Firebase REF = new Firebase(FIREBASE_URL);
+
+        //get username
+        Bundle bund = getIntent().getExtras();
+        myUsername = bund.getString(MY_USERNAME);
 
         //add timer text
         startTimer();
@@ -58,6 +68,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionActivity.this, MainPageActivity.class);
+                intent.putExtra(MY_USERNAME, myUsername); //need this to prevent issues with MainPageActivity for this button
                 startActivity(intent);
             }
         });
@@ -68,6 +79,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuestionActivity.this, ChatAvailability.class);
+                intent.putExtra(MY_USERNAME, myUsername);
                 startActivity(intent);
             }
         });

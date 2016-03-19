@@ -48,8 +48,14 @@ public class SearchFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText searchingUsername = (EditText) findViewById(R.id.searchUsername);
+
+                //if user entered own username, send message
+                if(searchingUsername.getText().toString().equalsIgnoreCase(myUsername)) {
+                    Toast.makeText(getApplicationContext(), "Please enter a different username",
+                            Toast.LENGTH_SHORT).show();
+                }
                 //username was entered, set up string and search for username
-                if(searchingUsername.length() != EMPTY) {
+                else if(searchingUsername.length() != EMPTY) {
                     friendUsernameStr = searchingUsername.getText().toString();
                     setUsernameLowercase();
                     findUsername(REF);

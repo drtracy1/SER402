@@ -45,14 +45,16 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         //initControls_Old();
 
-        //connect to firebase
-        Firebase.setAndroidContext(this);
-        Firebase REF = new Firebase(FIREBASE_URL).child("chat");
-
         //get username from SearchFriendActivity
         Bundle bund = getIntent().getExtras();
         friendUsername = bund.getString(FRIEND_USERNAME);
         myUsername = bund.getString(MY_USERNAME);
+
+        String chatroom = createChatRoomName(friendUsername, myUsername);
+
+        //connect to firebase
+        Firebase.setAndroidContext(this);
+        Firebase REF = new Firebase(FIREBASE_URL).child(chatroom);
 
 
         initControls(REF);
@@ -175,5 +177,18 @@ public class ChatActivity extends AppCompatActivity {
             ChatMessage message = chatHistory.get(i);
             displayMessage(message);
         }
+    }
+
+    private String createChatRoomName(String str1, String str2) {
+        String chatroom = "";
+
+        if(str2.compareToIgnoreCase(str1) < 0) {
+            chatroom = str2+str1;
+        }
+        else {
+            chatroom = str1+str2;
+        }
+
+        return chatroom;
     }
 }

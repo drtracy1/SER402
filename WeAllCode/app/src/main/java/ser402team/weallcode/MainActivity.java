@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
 
 
         //logoView1 = (ImageView) findViewById(R.id.logoView1);

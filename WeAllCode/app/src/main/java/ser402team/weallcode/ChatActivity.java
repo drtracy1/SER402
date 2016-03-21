@@ -1,16 +1,16 @@
 package ser402team.weallcode;
 
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -22,7 +22,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Locale;
 
 /**
@@ -44,16 +43,17 @@ public class ChatActivity extends AppCompatActivity {
     private ListView messagesContainer;
     private Button sendBtn;
     private ChatAdapter adapter;
-    private ArrayList<ChatMessage> chatHistory;
+    private ArrayList<ChatMessage> chatHistory = new ArrayList<ChatMessage>();
     private String friendUsername = "";
     private String myUsername = "";
     private String chatroom = "";
+    private ValueEventListener mConnectedListener;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        //initControls_Old();
 
         //get username from SearchFriendActivity
         Bundle bund = getIntent().getExtras();
@@ -69,30 +69,94 @@ public class ChatActivity extends AppCompatActivity {
         initControls();
     }
 
-    protected void initControls() {
-        messagesContainer = (ListView) findViewById(R.id.messagesContainer); //allow to display all messages as they come
-        messageET = (EditText) findViewById(R.id.messageEdit); //user types message before sending
-        sendBtn = (Button) findViewById(R.id.chatSendButton); //send button
 
-        TextView meLabel = (TextView) findViewById(R.id.meLbl);  //users side of the msg container
-        TextView companionLabel = (TextView) findViewById(R.id.friendLabel); //friend's side
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        //chat room setup
-        companionLabel.setText(friendUsername); //set friend username on chat room page
-        meLabel.setText(myUsername); //set username of the user currently logged in
-
-        //LOAD INITIAL CONVERSATION BETWEEN BOTH PARTIES
-        DownloadTextMessages dtm = new DownloadTextMessages();
-        dtm.execute();
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        //indication of connection status ***************** (can be deleted later) ****************
+        mConnectedListener = REF.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
             @Override
-            public void run() {
-                loadDummyHistory();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean connected = (Boolean) dataSnapshot.getValue();
+                if (connected) {
+                    Toast.makeText(ChatActivity.this, "Connected to Firebase", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ChatActivity.this, "Disconnected from Firebase", Toast.LENGTH_SHORT).show();
+                }
             }
-        }, 2000);
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                // No-op
+            }
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        REF.getRoot().child(".info/connected").removeEventListener(mConnectedListener);
+    }
+
+    protected void initControls() {
+
+        setLabels();
+
+        //set up the adapter to make the text messages look a certain way
+        adapter = new ChatAdapter(ChatActivity.this, new ArrayList<ChatMessage>());
+        adapter.setMyUsername(myUsername);
+        messagesContainer.setAdapter(adapter);
+
+
+        REF.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildKey) {
+
+                if (dataSnapshot.getValue() != null) {
+                    String str = dataSnapshot.getValue().toString();
+                    String usr, msg, dte;
+
+                    try {
+                        JSONObject jObj = new JSONObject(str.trim());
+                        usr = jObj.getString("author");
+                        msg = jObj.getString("textMessage");
+                        dte = jObj.getString("date");
+
+                        ChatMessage chatMsg = new ChatMessage(usr, msg, dte);
+                        //chatHistory.add(count, chatMsg);
+                        //count++;
+
+                        displayMessage(chatMsg);
+
+                    } catch (JSONException jex) {
+                        jex.printStackTrace();
+                    }
+                } else {
+                    System.out.println("DATASNAPSHOT IS NULL");
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                //no need att
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //no need att
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                //no need att
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                //error
+            }
+        });
 
         //send message if there is text entered
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -113,99 +177,30 @@ public class ChatActivity extends AppCompatActivity {
                 //create a new, auto-generated child of that chat location, and save our chat data there
                 REF.push().setValue(newChatMessage);
                 messageET.setText(""); //reset edit text line
-
-                displayMessage(newChatMessage);
-            }
-        });
-
-
-    }
-
-/*
-    private void initControls_Old() {
-        messagesContainer = (ListView) findViewById(R.id.messagesContainer);
-        messageET = (EditText) findViewById(R.id.messageEdit);
-        sendBtn = (Button) findViewById(R.id.chatSendButton);
-
-        TextView meLabel = (TextView) findViewById(R.id.meLbl);
-        TextView companionLabel = (TextView) findViewById(R.id.friendLabel);
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
-        companionLabel.setText("My Buddy");// Hard Coded
-        loadDummyHistory();
-
-        sendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String messageText = messageET.getText().toString();
-                if (TextUtils.isEmpty(messageText)) {
-                    return;
-                }
-
-                ChatMessage chatMessage = new ChatMessage();
-                chatMessage.setId(122);//dummy
-                chatMessage.setMessage(messageText);
-                chatMessage.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-                chatMessage.setMe(true);
-
-                messageET.setText("");
-
-                displayMessage_Old(chatMessage);
             }
         });
     }
-    */
 
-            public void displayMessage(ChatMessage message) {
-                adapter.add(message);
-                adapter.notifyDataSetChanged();
-                scroll();
-            }
+    public void setLabels() {
+        messagesContainer = (ListView) findViewById(R.id.messagesContainer); //allow to display all messages as they come
+        messageET = (EditText) findViewById(R.id.messageEdit); //user types message before sending
+        sendBtn = (Button) findViewById(R.id.chatSendButton); //send button
 
-            private void scroll() {
-                messagesContainer.setSelection(messagesContainer.getCount() - 1);
-            }
+        TextView meLabel = (TextView) findViewById(R.id.meLbl);  //users side of the msg container
+        TextView companionLabel = (TextView) findViewById(R.id.friendLabel); //friend's side
 
-    /*
-    private void loadDummyHistory_Old(){
-
-        chatHistory = new ArrayList<ChatMessage>();
-
-        ChatMessage msg = new ChatMessage();
-        msg.setId(1);
-        msg.setMe(false);
-        msg.setMessage("Hi");
-        msg.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-        chatHistory.add(msg);
-        ChatMessage msg1 = new ChatMessage();
-        msg1.setId(2);
-        msg1.setMe(false);
-        msg1.setMessage("How r u doing???");
-        msg1.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-        chatHistory.add(msg1);
-
-        adapter = new ChatAdapter(ChatActivity.this, new ArrayList<ChatMessage>());
-        messagesContainer.setAdapter(adapter);
-
-        for(int i=0; i<chatHistory.size(); i++) {
-            ChatMessage message = chatHistory.get(i);
-            displayMessage_Old(message);
-        }
+        //chat room setup
+        companionLabel.setText(friendUsername); //set friend username on chat room page
+        meLabel.setText(myUsername); //set username of the user currently logged in
     }
-*/
 
-    private void loadDummyHistory() {
-
-        //set up the adapter for the chatroom
-        adapter = new ChatAdapter(ChatActivity.this, new ArrayList<ChatMessage>());
-        adapter.setMyUsername(myUsername);
-        messagesContainer.setAdapter(adapter);
-
-        //add messages from the chatHistory list (getting data from FB is backwards)
-        for (int i = chatHistory.size() - 1; i >= 0; i--) {
-            ChatMessage message = chatHistory.get(i);
-            displayMessage(message);
-        }
+    public void displayMessage(ChatMessage message) {
+        adapter.add(message);
+        adapter.notifyDataSetChanged();
+        scroll();
     }
+
+    private void scroll() { messagesContainer.setSelection(messagesContainer.getCount() - 1); }
 
     private String createChatRoomName(String str1, String str2) {
         String chatroom = "";
@@ -220,56 +215,5 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         return chatroom;
-    }
-
-    private class DownloadTextMessages extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected String doInBackground(Void... params) {
-            //just get the data from firebase into the chatHistory list
-            REF.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    ArrayList<ChatMessage> chat_History = new ArrayList<ChatMessage>();
-
-                    if (dataSnapshot.getValue() != null) {
-                        //get value, turn it into JSONObject, then separate values into string
-                        String str = dataSnapshot.getValue().toString();
-                        String usr, msg, dte;
-                        try {
-                            JSONObject jObj = new JSONObject(str.trim());
-                            Iterator<?> keys = jObj.keys();
-
-                            //first get the object from the key, then break apart what is under the key,
-                            //      get each important element from the skinny object
-                            while (keys.hasNext()) {
-                                String key = (String) keys.next();
-                                Object obj = jObj.get(key);
-                                JSONObject skinnyObj = new JSONObject(obj.toString().trim());
-
-                                usr = skinnyObj.getString("author");
-                                msg = skinnyObj.getString("textMessage");
-                                dte = skinnyObj.getString("date");
-
-                                ChatMessage chatMsg = new ChatMessage(usr, msg, dte);
-                                chat_History.add(chatMsg);
-                            }
-                            chatHistory = new ArrayList<ChatMessage>(chat_History);
-                            System.out.println("First: " + chatHistory);
-                        } catch (JSONException jex) {
-                            jex.printStackTrace();
-                        }
-                    } else {
-                        //nothing in the database to retrieve
-                    }
-                }
-
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-                    System.out.println("CANCELLED");
-                }
-            });
-            return "Done";
-        }
     }
 }

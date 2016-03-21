@@ -1,0 +1,88 @@
+{
+    "questionAnswer" : {
+        "0" : {
+            "Difficulty": 0,
+            "Question": "\"What color is the sky?\"",
+            "Answer": "\"Blue\"",
+            "Wrong1": "\"Green\"",
+            "Wrong2": "\"Maroon\""
+        },
+        "1" : {
+            "Difficulty": 0,
+            "Question": "\"The brain of any computer system is the\"",
+            "Answer": "\"CPU\"",
+            "Wrong1": "\"Keyboard\"",
+            "Wrong2": "\"Mouse\""
+        },
+        "2" : {
+            "Difficulty": 0,
+            "Question": "\"1 kilobyte is equal to\"",
+            "Answer": "\"1000 bytes, duh\"",
+            "Wrong1": "\"1024 bytes\"",
+            "Wrong2": "\"1064 bytes\""
+        },
+        "3" : {
+            "Difficulty": 0,
+            "Question": "\"What is the name for the worldwide network infrastructure that links millions of computers together from around the world to communicate through wires, cables and wireless connections?\"",
+            "Answer": "\"Internet\"",
+            "Wrong1": "\"Keyboard\"",
+            "Wrong2": "\"Mouse\""
+        },
+        "4" : {
+            "Difficulty": 1,
+            "Question": "\"Which of the following is an example of arithmetic operators in computer science?\"",
+            "Answer": "\"+ -\"",
+            "Wrong1": "\"Keyboard\"",
+            "Wrong2": "\"Mouse\""
+        },
+        "5" : {
+            "Difficulty": 0,
+            "Question": "\"What is computer science?\"",
+            "Answer": "\"Scientific approach to computation and its applications\"",
+            "Wrong1": "\"Keyboard\"",
+            "Wrong2": "\"Mouse\""
+        },
+        "6" : {
+            "Difficulty": 0,
+            "Question": "\"What is a computer\"",
+            "Answer": "\"An electronic device that calculates, manipulates, and stores information?\"",
+            "Wrong1": "\"Keyboard\"",
+            "Wrong2": "\"Mouse\""
+        },
+        "7" : {
+            "Difficulty": 1,
+            "Question": "\"What do you use to repeat segments of code?\"",
+            "Answer": "\"Loops\"",
+            "Wrong1": "\"Rings\"",
+            "Wrong2": "\"Repeaters\""
+        },
+        "8" : {
+            "Difficulty": 0,
+            "Question": "\"What do strings represent?\"",
+            "Answer": "\"Character sequences\"",
+            "Wrong1": "\"Cotton\"",
+            "Wrong2": "\"Integers\""
+        },
+        "9" : {
+            "Difficulty": 0,
+            "Question": "\"What are Window's and Mac OSX's software called?\"",
+            "Answer": "\"Operating Systems\"",
+            "Wrong1": "\"Computers\"",
+            "Wrong2": "\"Nouns\""
+        },
+        "10" : {
+            "Difficulty": 0,
+            "Question": "\"Java is considered a what?\"",
+            "Answer": "\"Programming Language\"",
+            "Wrong1": "\"Delicious Coffee\"",
+            "Wrong2": "\"Operating System\""
+        },
+        "11" : {
+            "Difficulty": 0,
+            "Question": "\"A GPU's purpose is to:\"",
+            "Answer": "\"Process Graphics\"",
+            "Wrong1": "\"Go Fast\"",
+            "Wrong2": "\"Save your Data\""
+        }
+    }
+}

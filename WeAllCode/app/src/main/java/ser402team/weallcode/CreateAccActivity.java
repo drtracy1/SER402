@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class CreateAccActivity extends AppCompatActivity {
 
-    public final static String USERNAME = "ser402team.weallcode.USERNAME";
+    public final static String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private static String usernameLowercase = "";
     private static String username = "";
     private static String password1 = "";
@@ -134,7 +134,7 @@ public class CreateAccActivity extends AppCompatActivity {
 
     private void allowLogin(String userName) {
         Intent intent = new Intent(CreateAccActivity.this, MainPageActivity.class);
-        intent.putExtra(USERNAME, userName);
+        intent.putExtra(MY_USERNAME, userName);
         startActivity(intent);
     }
 }

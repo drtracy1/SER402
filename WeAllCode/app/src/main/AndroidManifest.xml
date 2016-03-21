@@ -10,6 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,8 +30,10 @@
             android:name=".AboutUsActivity"
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".AvatarActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".AvatarActivity" />
+        <activity android:name=".ChatAvailability" />
+        <activity android:name=".SearchFriendActivity" />
     </application>
 
 </manifest>

@@ -3,51 +3,56 @@ package ser402team.weallcode;
 /**
  * @author JoCodes
  * Being used under the Code Project Open Licsense
+ *
+ * @update Kristel Basra
  */
 public class ChatMessage {
+    /*
     private long id;
     private boolean isMe;
     private String message;
-    private Long userId;
+    private String dateTime;
+    */
+
+    /** Updated code **/
+    private String author;
+    private String textMessage;
     private String dateTime;
 
-    public long getId() {
-        return id;
+    ChatMessage(String usr, String msg, String date) {
+        this.author = usr;
+        this.textMessage = msg;
+        this.dateTime = date;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getAuthor() { return author; }
+    public String getTextMessage() { return textMessage; }
+    public String getDate() { return dateTime; }
+    /** end updated code **/
+
+
+    /*
+    ChatMessage() {}
+
+    ChatMessage(String msg, Boolean author) {
+        this.message = msg;
+        this.isMe = author;
     }
 
-    public boolean getIsme() {
-        return isMe;
-    }
+    public long getId() { return id; }
 
-    public void setMe(boolean isMe) {
-        this.isMe = isMe;
-    }
+    public void setId(long id) { this.id = id; }
 
-    public String getMessage() {
-        return message;
-    }
+    public boolean getIsMe() { return isMe; }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    public void setMe(boolean isMe) { this.isMe = isMe; }
 
-    public long getUserId() {
-        return userId;
-    }
+    public String getMessage() { return message; }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+    public void setMessage(String message) { this.message = message; }
 
-    public String getDate() {
-        return dateTime;
-    }
+    public String getDate() { return dateTime; }
 
-    public void setDate(String dateTime) {
-        this.dateTime = dateTime;
-    }
+    public void setDate(String dateTime) { this.dateTime = dateTime; }
+    */
 }

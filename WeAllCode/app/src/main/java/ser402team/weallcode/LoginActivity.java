@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String USERNAME = "ser402team.weallcode.USERNAME";
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private static String usernameLowercase = "";
     private static String username = "";
     private static String password = "";
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     //allow user to log in after credentials have been authenticated
     public void allowLogin() {
         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
-        intent.putExtra(USERNAME, getUsername());
+        intent.putExtra(MY_USERNAME, getUsername());
         startActivity(intent);
     }
 

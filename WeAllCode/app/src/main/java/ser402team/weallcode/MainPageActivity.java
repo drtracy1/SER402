@@ -10,30 +10,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by CrystalGutierrez on 2/3/2016.
  * Modified by DanielTracy
+ *
+ * @update Kristel Basra
+ * username now accessed to this page
  */
 public class MainPageActivity extends AppCompatActivity {
+
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
+    public static String myUsername = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        /*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
+        //get username from LoginActivity
+        // NOTE: **** if pushed back button from another page, then issues may arise ****
+        Bundle bund = getIntent().getExtras();
+        myUsername = bund.getString(MY_USERNAME);
+
+        TextView welcomeMsg = (TextView) findViewById(R.id.mainPageUsernameView);
+        String welcomeUser = "Welcome, "+myUsername;
+        welcomeMsg.setText(welcomeUser);
+
 
         //Changes the current activity to the Question page
         Button playButton = (Button) findViewById(R.id.playButton);
@@ -41,6 +46,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainPageActivity.this, QuestionActivity.class);
+                intent.putExtra(MY_USERNAME, myUsername);
                 startActivity(intent);
             }
         });

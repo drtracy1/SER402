@@ -14,7 +14,20 @@
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
         android:padding="10dp"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Username"
+            android:id="@+id/mainPageUsernameView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -24,9 +37,9 @@
         android:text="Play"
         android:id="@+id/playButton"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="75dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -34,9 +47,9 @@
         android:text="Avatar"
         android:id="@+id/avatarButton"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/relativeLayout"
+        android:layout_below="@+id/playButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp"
+        android:layout_marginTop="28dp"
         android:onClick="goToAvatar" />
 
     <Button
@@ -45,17 +58,18 @@
         android:text="Instructions"
         android:id="@+id/instructionsButton"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/relativeLayout"
+        android:layout_below="@+id/avatarButton"
+        android:layout_marginTop="28dp"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Settings"
-        android:id="@+id/button4"
+        android:id="@+id/settingsButton"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
         android:layout_below="@+id/instructionsButton"
+        android:layout_marginTop="28dp"
         android:layout_alignLeft="@+id/avatarButton"
         android:layout_alignStart="@+id/avatarButton" />
 
@@ -64,11 +78,11 @@
         android:layout_height="wrap_content"
         android:text="About Us"
         android:id="@+id/aUbutton"
-        android:onClick="goToAboutUs"
-        android:layout_below="@+id/button4"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_alignStart="@+id/button4"
-        android:layout_marginTop="28dp" />
-
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/settingsButton"
+        android:layout_alignLeft="@+id/settingsButton"
+        android:layout_alignStart="@+id/settingsButton"
+        android:layout_marginTop="28dp"
+        android:onClick="goToAboutUs" />
 
 </RelativeLayout>

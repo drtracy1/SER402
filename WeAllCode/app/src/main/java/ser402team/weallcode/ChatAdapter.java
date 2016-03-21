@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
+
 import java.util.List;
 
 /**
@@ -21,10 +23,16 @@ public class ChatAdapter extends BaseAdapter {
 
     private final List<ChatMessage> chatMessages;
     private Activity context;
+    private String myUsername = "";
+    private ChildEventListener mListener;
 
     public ChatAdapter(Activity context, List<ChatMessage> chatMessages) {
         this.context = context;
         this.chatMessages = chatMessages;
+    }
+
+    public void setMyUsername(String usr) {
+        this.myUsername = usr;
     }
 
     @Override
@@ -64,11 +72,10 @@ public class ChatAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        boolean myMsg = chatMessage.getIsMe() ;//Just a dummy check to simulate whether it me or other sender
-        setAlignment(holder, myMsg);
-        holder.txtMessage.setText(chatMessage.getMessage());
+        String user = chatMessage.getAuthor();
+        setAlignment(holder, user);
+        holder.txtMessage.setText(chatMessage.getTextMessage());
         holder.txtInfo.setText(chatMessage.getDate());
-
 
         return convertView;
     }
@@ -81,8 +88,8 @@ public class ChatAdapter extends BaseAdapter {
         chatMessages.addAll(messages);
     }
 
-    private void setAlignment(ViewHolder holder, boolean isMe) {
-        if (!isMe) {
+    private void setAlignment(ViewHolder holder, String isMe) {
+        if (!myUsername.equalsIgnoreCase(isMe)) {
             holder.contentWithBG.setBackgroundResource(R.drawable.in_message_bg);
 
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) holder.contentWithBG.getLayoutParams();

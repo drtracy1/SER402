@@ -7,11 +7,31 @@ package ser402team.weallcode;
  * @update Kristel Basra
  */
 public class ChatMessage {
+    /*
     private long id;
     private boolean isMe;
     private String message;
     private String dateTime;
+    */
 
+    /** Updated code **/
+    private String author;
+    private String textMessage;
+    private String dateTime;
+
+    ChatMessage(String usr, String msg, String date) {
+        this.author = usr;
+        this.textMessage = msg;
+        this.dateTime = date;
+    }
+
+    public String getAuthor() { return author; }
+    public String getTextMessage() { return textMessage; }
+    public String getDate() { return dateTime; }
+    /** end updated code **/
+
+
+    /*
     ChatMessage() {}
 
     ChatMessage(String msg, Boolean author) {
@@ -34,4 +54,5 @@ public class ChatMessage {
     public String getDate() { return dateTime; }
 
     public void setDate(String dateTime) { this.dateTime = dateTime; }
+    */
 }

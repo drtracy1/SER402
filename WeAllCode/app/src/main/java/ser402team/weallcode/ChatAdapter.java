@@ -11,20 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
-
 import java.util.List;
 
 /**
  * @author JoCodes
  * Being used under the Code Project Open Licsense
+ *
+ * @update Kristel Basra 3/2016
  */
 public class ChatAdapter extends BaseAdapter {
 
     private final List<ChatMessage> chatMessages;
     private Activity context;
     private String myUsername = "";
-    private ChildEventListener mListener;
 
     public ChatAdapter(Activity context, List<ChatMessage> chatMessages) {
         this.context = context;

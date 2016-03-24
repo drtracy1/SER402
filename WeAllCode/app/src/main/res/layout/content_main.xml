@@ -23,6 +23,14 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_Login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +39,7 @@
         android:background="#0000"
         android:src="@drawable/buttoncreate"
         android:onClick="goToCreateAcc"
-        android:layout_below="@+id/button_Login"
+        android:layout_below="@+id/fb_login_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp" />
 
@@ -42,5 +50,15 @@
         android:src="@drawable/logo3"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/button_Login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="facebookInfoHereTest"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/button_Login"
+        android:layout_alignRight="@+id/button_Login"
+        android:layout_alignEnd="@+id/button_Login" />
 
 </RelativeLayout>

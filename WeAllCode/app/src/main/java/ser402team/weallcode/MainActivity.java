@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
 
+        //There are other potentially useful read permissions but we have to go through an official facebook.com registration and review process.
+        //If we have time we should look into doing that, but for testing and prototyping purposes--is not necessary.
         fbLoginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email"));
 
@@ -88,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 Log.v("LoginActivity", response.toString());
                                 try {
+
+                                    //This is just a sample of how to get info from the fb return object. We can get id, gender, age, locale etc. from the facebook login feature.
                                     email1 = object.getString("email"); // eg. wcoomber@asu.edu
                                     name1 = object.getString("name"); // fullname eg. Wesley Coomber
                                     textViewT.setText("Hi, " + name1 + ", " + email1);

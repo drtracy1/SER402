@@ -1,8 +1,13 @@
 package ser402team.weallcode;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +19,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +58,14 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean[] isUsed;
     private QuestionAnswer current;
     private String myUsername = "";
+    // share button
+    private ShareButton shareButton;
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +83,15 @@ public class QuestionActivity extends AppCompatActivity {
         //add timer text
         startTimer();
 
+        //Enable Facebook SDK
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        //Share button
+        //(Right now the ability to share is disabled because of our FB android licsense)
+        ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://weallcode.wordpress.com/"))
+                .build();
+        fbShareButton.setShareContent(content);
 
         //Return button functionality
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
@@ -152,7 +183,7 @@ public class QuestionActivity extends AppCompatActivity {
                 String answer1 = sb.toString();
 
                 //If textview is equal to the correct answer, change the imageview
-                if(answer1.equals(current.getCorrectAnswer())) {
+                if (answer1.equals(current.getCorrectAnswer())) {
                     ImageView img = (ImageView) findViewById(R.id.correct);
                     img.setImageResource(R.drawable.correct);
                 } else {
@@ -172,7 +203,7 @@ public class QuestionActivity extends AppCompatActivity {
                 String answer2 = sb.toString();
 
                 //If textview is equal to the correct answer, change the imageview
-                if(answer2.equals(current.getCorrectAnswer())) {
+                if (answer2.equals(current.getCorrectAnswer())) {
                     ImageView img = (ImageView) findViewById(R.id.correct);
                     img.setImageResource(R.drawable.correct);
                 } else {
@@ -192,7 +223,7 @@ public class QuestionActivity extends AppCompatActivity {
                 String answer3 = sb.toString();
 
                 //If textview is equal to the correct answer, change the imageview
-                if(answer3.equals(current.getCorrectAnswer())) {
+                if (answer3.equals(current.getCorrectAnswer())) {
                     ImageView img = (ImageView) findViewById(R.id.correct);
                     img.setImageResource(R.drawable.correct);
                 } else {
@@ -201,13 +232,16 @@ public class QuestionActivity extends AppCompatActivity {
                 }
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     //Here you should populate the QA list
     protected void generateQAList(Firebase REF) {
 
         //set 5 questions to the list --> this logic can be changed later
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             setQuestion(REF);
         }
 
@@ -231,7 +265,9 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     //Add the string to the list
-    protected void addQuestionToList(QuestionAnswer qA) {questionList.add(qA);}
+    protected void addQuestionToList(QuestionAnswer qA) {
+        questionList.add(qA);
+    }
 
     //Use the size of the question list to return a random integer index
     protected int genRandInt() {
@@ -261,7 +297,9 @@ public class QuestionActivity extends AppCompatActivity {
             maxQuestions = rand.nextInt(11); //<-- need to change that number eventually
         }
         //if there is no children in the firebase db --> send an error message
-        if(maxQuestions <0) { return "Error"; }
+        if (maxQuestions < 0) {
+            return "Error";
+        }
 
         //turn into string for easy search in firebase db
         return Integer.toString(maxQuestions);
@@ -269,8 +307,8 @@ public class QuestionActivity extends AppCompatActivity {
 
     //Check if the boolean array is all true or not
     protected boolean isAllTrue(boolean[] arr) {
-        for(int i=0; i<arr.length; i++) {
-            if(arr[i] == false) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == false) {
                 return false;
             }
         }
@@ -295,7 +333,7 @@ public class QuestionActivity extends AppCompatActivity {
                     try {
                         //make sure the string is seen as a JSONObject
                         Object json = new JSONTokener(str).nextValue();
-                        if(json instanceof JSONObject) {
+                        if (json instanceof JSONObject) {
                             JSONObject jObj = new JSONObject(str);
 
                             String question = jObj.get("Question").toString();
@@ -334,21 +372,22 @@ public class QuestionActivity extends AppCompatActivity {
         timerTextField.setTypeface(Typeface.DEFAULT);
 
         new CountDownTimer(31000, 1000) {
-            
+
             public void onTick(long millisUntilFinished) {
                 timerTextField.setText(" Time remaining: " + millisUntilFinished / 1000 + " ");
-                if((millisUntilFinished / 1000) == 5) {
+                if ((millisUntilFinished / 1000) == 5) {
                     timerTextField.setBackgroundColor(Color.RED);
-                }else if ((millisUntilFinished / 1000) == 4){
+                } else if ((millisUntilFinished / 1000) == 4) {
                     timerTextField.setBackgroundColor(Color.TRANSPARENT);
-                }else if ((millisUntilFinished / 1000) == 3){
+                } else if ((millisUntilFinished / 1000) == 3) {
                     timerTextField.setBackgroundColor(Color.RED);
-                }else if ((millisUntilFinished / 1000) == 2) {
+                } else if ((millisUntilFinished / 1000) == 2) {
                     timerTextField.setBackgroundColor(Color.TRANSPARENT);
-                }else if ((millisUntilFinished / 1000) <= 1){
+                } else if ((millisUntilFinished / 1000) <= 1) {
                     timerTextField.setBackgroundColor(Color.RED);
                 }
             }
+
             public void onFinish() {
                 timerTextField.setText(" Times Up! ");
                 timerTextField.setTypeface(Typeface.DEFAULT_BOLD);
@@ -361,4 +400,45 @@ public class QuestionActivity extends AppCompatActivity {
         QuestionAnswer qa = new QuestionAnswer(q, a, w1, w2);
         addQuestionToList(qa);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Question Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ser402team.weallcode/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Question Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ser402team.weallcode/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
+
 }

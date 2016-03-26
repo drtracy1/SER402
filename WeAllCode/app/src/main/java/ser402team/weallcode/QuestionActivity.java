@@ -1,7 +1,10 @@
 package ser402team.weallcode;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -16,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
@@ -52,6 +58,9 @@ public class QuestionActivity extends AppCompatActivity {
     private boolean[] isUsed;
     private QuestionAnswer current;
     private String myUsername = "";
+    // share button
+    private ShareButton shareButton;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -74,8 +83,15 @@ public class QuestionActivity extends AppCompatActivity {
         //add timer text
         startTimer();
 
-        ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
-        //shareButton.setShareContent(content);
+        //Enable Facebook SDK
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        //Share button
+        //(Right now the ability to share is disabled because of our FB android licsense)
+        ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://weallcode.wordpress.com/"))
+                .build();
+        fbShareButton.setShareContent(content);
 
         //Return button functionality
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
@@ -424,4 +440,5 @@ public class QuestionActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
 }

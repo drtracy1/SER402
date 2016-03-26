@@ -12,9 +12,15 @@
         android:theme="@style/AppTheme">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="WeAllCode" />
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="WeAllCode"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +33,6 @@
         <activity android:name=".MainPageActivity" />
         <activity android:name=".QuestionActivity" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
 
         <provider android:authorities="com.facebook.app.FacebookContentProvider1679105019019960"
             android:name="com.facebook.FacebookContentProvider"

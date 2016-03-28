@@ -22,14 +22,6 @@
         android:transcriptMode="alwaysScroll"
         android:divider="@null" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/returnToGameButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@android:drawable/ic_menu_revert" />
 
     <ImageButton
         android:layout_width="wrap_content"

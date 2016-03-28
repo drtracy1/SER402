@@ -43,12 +43,10 @@ public class ChatActivity extends AppCompatActivity {
     private ListView messagesContainer;
     private Button sendBtn;
     private ChatAdapter adapter;
-    private ArrayList<ChatMessage> chatHistory = new ArrayList<ChatMessage>();
     private String friendUsername = "";
     private String myUsername = "";
     private String chatroom = "";
     private ValueEventListener mConnectedListener;
-    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +116,8 @@ public class ChatActivity extends AppCompatActivity {
                     String usr, msg, dte;
 
                     try {
+                        //for some reason, JSONObject does not like certain characters within
+                        //   a string. it thinks it is using a NON-double quoted string...researching
                         JSONObject jObj = new JSONObject(str.trim());
                         usr = jObj.getString("author");
                         msg = jObj.getString("textMessage");
@@ -209,9 +209,9 @@ public class ChatActivity extends AppCompatActivity {
         str2 = str2.toLowerCase();
 
         if (str2.compareToIgnoreCase(str1) < 0) {
-            chatroom = str2 + str1;
+            chatroom = "-" + str2 + "-" + str1 + "-";
         } else {
-            chatroom = str1 + str2;
+            chatroom = "-" + str1 + "-" + str2 + "-";
         }
 
         return chatroom;

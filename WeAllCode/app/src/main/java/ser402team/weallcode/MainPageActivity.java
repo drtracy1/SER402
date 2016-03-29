@@ -65,7 +65,13 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     public void goToAvatar(View v){
-        Intent intent = new Intent(MainPageActivity.this, AvatarActivity.class);
+        Intent intent = new Intent(MainPageActivity.this, AvatarMenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSettings(View v){
+        Intent intent = new Intent(MainPageActivity.this, SettingsActivity.class);
+        intent.putExtra(MY_USERNAME, myUsername);
         startActivity(intent);
     }
 

@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 public class CreateAccActivity extends AppCompatActivity {
 
+    public static final String FIREBASE_URL = "https://weallcode-users.firebaseio.com/";
     public final static String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private static String usernameLowercase = "";
     private static String username = "";
@@ -37,77 +38,74 @@ public class CreateAccActivity extends AppCompatActivity {
 
         //connect to firebase
         Firebase.setAndroidContext(this);
-        final Firebase REF = new Firebase("https://weallcode-users.firebaseio.com/");
+        final Firebase REF = new Firebase(FIREBASE_URL);
 
         Button createAccountButt = (Button) findViewById(R.id.buttonDone);
-        createAccountButt.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
-                        //get username, password and email from user
-                        final EditText newUsername = (EditText) findViewById(R.id.editName);
-                        final EditText newPassword1 = (EditText) findViewById(R.id.editPassword1);
-                        final EditText newPassword2 = (EditText) findViewById(R.id.editPassword2);
-                        final EditText newEmail = (EditText) findViewById(R.id.editEmail);
+        createAccountButt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //get username, password and email from user
+                final EditText newUsername = (EditText) findViewById(R.id.editName);
+                final EditText newPassword1 = (EditText) findViewById(R.id.editPassword1);
+                final EditText newPassword2 = (EditText) findViewById(R.id.editPassword2);
+                final EditText newEmail = (EditText) findViewById(R.id.editEmail);
 
-                        setUsername(newUsername.getText().toString());
-                        setUsernameLowercase();
-                        setPassword1(newPassword1.getText().toString());
-                        setPassword2(newPassword2.getText().toString());
-                        setEmail(newEmail.getText().toString());
+                setUsername(newUsername.getText().toString());
+                setUsernameLowercase();
+                setPassword1(newPassword1.getText().toString());
+                setPassword2(newPassword2.getText().toString());
+                setEmail(newEmail.getText().toString());
 
-                        //gather user information into one object
-                        ui = new UserInformation(getUsername(), getEmail(), getPassword1());
+                //gather user information into one object
+                ui = new UserInformation(getUsername(), getEmail(), getPassword1());
 
-                        //check if username entered is valid
-                        if (!isValid(getUsername()) || getUsername().length() == 0) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Username is not valid. Please no special characters or spaces.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        //check if email is valid
-                        else if(!isEmailValid(getEmail())) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Email is not valid. Please enter a valid email address.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        //check if passwords match
-                        else if(!doPasswordsMatch(getPassword1(), getPassword2())) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Passwords do not match. Please try again.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        //create user if it does not exist
-                        else {
-                            REF.child("userAccounts").child(getUsernameLowercase()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                    //found account
-                                    if (dataSnapshot.getValue() != null) {
-                                        //System.out.println("ACCOUNT FOUND");
-                                        Toast.makeText(getApplicationContext(),
-                                                "Account already exists. Please try another username.",
-                                                Toast.LENGTH_LONG).show();
-                                    }
-                                    //did not find username
-                                    else {
-                                        //System.out.println("ACCOUNT NOT FOUND");
-                                        Firebase user_account = REF.child("userAccounts").child(getUsernameLowercase());
-                                        user_account.setValue(ui);
-                                        allowLogin(getUsername());
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(FirebaseError firebaseError) {
-                                    System.out.println("There was an error");
-                                }
-                            });
-                        }
-                    }
+                //check if username entered is valid
+                if (!isValid(getUsername()) || getUsername().length() == 0) {
+                    Toast.makeText(getApplicationContext(),
+                            "Username is not valid. Please no special characters or spaces.",
+                            Toast.LENGTH_LONG).show();
                 }
-        );
+                //check if email is valid
+                else if (!isEmailValid(getEmail())) {
+                    Toast.makeText(getApplicationContext(),
+                            "Email is not valid. Please enter a valid email address.",
+                            Toast.LENGTH_LONG).show();
+                }
+                //check if passwords match
+                else if (!doPasswordsMatch(getPassword1(), getPassword2())) {
+                    Toast.makeText(getApplicationContext(),
+                            "Passwords do not match. Please try again.",
+                            Toast.LENGTH_LONG).show();
+                }
+                //create user if it does not exist
+                else {
+                    REF.child("userAccounts").child(getUsernameLowercase()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
+                            //found account
+                            if (dataSnapshot.getValue() != null) {
+                                //System.out.println("ACCOUNT FOUND");
+                                Toast.makeText(getApplicationContext(),
+                                        "Account already exists. Please try another username.",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                            //did not find username
+                            else {
+                                //System.out.println("ACCOUNT NOT FOUND");
+                                Firebase user_account = REF.child("userAccounts").child(getUsernameLowercase());
+                                user_account.setValue(ui);
+                                allowLogin(getUsername());
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
+                            System.out.println("There was an error");
+                        }
+                    });
+                }
+            }
+        });
     }
 
     //setters and getters

@@ -71,7 +71,8 @@
         android:layout_below="@+id/instructionsButton"
         android:layout_marginTop="28dp"
         android:layout_alignLeft="@+id/avatarButton"
-        android:layout_alignStart="@+id/avatarButton" />
+        android:layout_alignStart="@+id/avatarButton"
+        android:onClick="goToSettings"/>
 
     <Button
         android:layout_width="wrap_content"

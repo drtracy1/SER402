@@ -45,28 +45,26 @@ public class LoginActivity extends AppCompatActivity {
 
         //sign in button
         Button signInButton = (Button) findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
 
-                        //get username and password from username
-                        final EditText lName = (EditText) findViewById(R.id.loginName);
-                        final EditText pwd = (EditText) findViewById(R.id.password);
-                        setUsername(lName.getText().toString());
-                        setUsernameLowercase();
-                        setPassword(pwd.getText().toString());
+                //get username and password from username
+                final EditText lName = (EditText) findViewById(R.id.loginName);
+                final EditText pwd = (EditText) findViewById(R.id.password);
+                setUsername(lName.getText().toString());
+                setUsernameLowercase();
+                setPassword(pwd.getText().toString());
 
-                        //make sure the user enters something for username and password
-                        if(getUsername().length() == 0 || getPassword().length() == 0) {
-                            Toast.makeText(getApplicationContext(), "Please enter a username and password",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            authenticateLogin(REF);
-                        }
-                    }
+                //make sure the user enters something for username and password
+                if(getUsername().length() == 0 || getPassword().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please enter a username and password",
+                            Toast.LENGTH_SHORT).show();
                 }
-        );
+                else {
+                    authenticateLogin(REF);
+                }
+            }
+        });
     }
 
     //allow user to log in after credentials have been authenticated

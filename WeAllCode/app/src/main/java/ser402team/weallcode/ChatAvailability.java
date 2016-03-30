@@ -134,13 +134,12 @@ public class ChatAvailability extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String userIdentity = "-" + myUsername.toLowerCase() + "-";
-                //ArrayList<String> friendList;
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    if (child.getKey().toString().contains(userIdentity)) {
-                        //System.out.println("GOT IT: "+userIdentity);
-                        //System.out.println("KEY: " + child.getKey());  ///YES, USE THIS FOR CHATROOM
-                        String friend = getFriendsName(child.getKey().toString());
+                    String key = child.getKey().toString();
+
+                    if (key.contains(userIdentity)) {
+                        String friend = getFriendsName(key, myUsername);
                         list.add(friend);
                         adapter.notifyDataSetChanged();
                     }
@@ -154,12 +153,16 @@ public class ChatAvailability extends AppCompatActivity {
         });
     }
 
-    protected String getFriendsName(String chatroomName) {
+    protected String getFriendsName(String chatroomName, String me) {
         //endIndex is the index of the tack symbol of the chatroom
         //   remove that and parse out the usernames
         int endIndex = chatroomName.indexOf("-", 1);
-        //String firstUser = chatroomName.substring(1, endIndex);
+        String firstUser = chatroomName.substring(1, endIndex);
         String secondUser = chatroomName.substring(endIndex + 1, chatroomName.length() - 1);
+
+        if(secondUser.equals(me.toLowerCase())) {
+            return firstUser;
+        }
 
         return secondUser;
     }

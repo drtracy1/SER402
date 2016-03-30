@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String email1 = "d@default.com";
     private String name1 = "jon doe";
+    private String gender1 = "man";
+    private String locale1 = "NYC";
 
     private String hashDev = "5iQu58JfnNr+GkLxJ+XlGjvgSKw=";
 
@@ -94,8 +96,15 @@ public class MainActivity extends AppCompatActivity {
                                     //This is just a sample of how to get info from the fb return object. We can get id, gender, age, locale etc. from the facebook login feature.
                                     email1 = object.getString("email"); // eg. wcoomber@asu.edu
                                     name1 = object.getString("name"); // fullname eg. Wesley Coomber
-                                    textViewT.setText("Hi, " + name1 + ", " + email1);
+                                    gender1 = object.getString("gender");
+                                    locale1 = object.getString("locale");
+                                   // textViewT.setText("Hi, " + name1 + ", " + email1 + ", " + gender1 + ", " + locale1);
                                     //System.out.println("Hi2, " + email1 + name1);
+
+                                    Toast.makeText(getApplicationContext(), ("Hi, " + name1 + ", " + email1 + ", " + gender1 + ", " + locale1),
+                                            Toast.LENGTH_LONG).show();
+
+
 
                                 } catch (JSONException ex) {
                                     System.out.println("ERROR GETTING FACEBOOK DATA!");
@@ -162,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         v.startAnimation(animTranslate);
         //Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
 
-        textViewT.setText("Hi, " + email1 + name1);
+        //textViewT.setText("Hi, " + email1 + name1);
         //System.out.println("Hi2, " + email1 + name1);
 
 

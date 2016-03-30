@@ -55,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="facebookInfoHereTest"
         android:id="@+id/textView3"
         android:layout_below="@+id/button_Login"
         android:layout_alignRight="@+id/button_Login"

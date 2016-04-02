@@ -59,6 +59,11 @@ public class MainPageActivity extends AppCompatActivity {
         return true;
     }
 
+    public void logOut(View v) {
+        Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void goToAboutUs(View v){
         Intent intent = new Intent(MainPageActivity.this, AboutUsActivity.class);
         startActivity(intent);

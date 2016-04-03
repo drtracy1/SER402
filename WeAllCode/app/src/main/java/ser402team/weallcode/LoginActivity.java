@@ -74,6 +74,13 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void resetFields() {
+        final EditText lName = (EditText) findViewById(R.id.loginName);
+        final EditText pwd = (EditText) findViewById(R.id.password);
+        lName.setText("");
+        pwd.setText("");
+    }
+
     //setters and getters
     private void setUsername(String un) { username = un; }
     private void setUsernameLowercase() { usernameLowercase = getUsername().toLowerCase(); }
@@ -103,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         //confirm username and password match records
                         if (strUsername.equalsIgnoreCase(getUsername()) &&
                                 strPassword.equals(getPassword())) {
+                            resetFields();
                             allowLogin();
                         }
                         //username and password do not match records together

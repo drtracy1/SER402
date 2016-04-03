@@ -62,6 +62,11 @@ public class MainPageActivity extends AppCompatActivity {
         return true;
     }
 
+    public void logOut(View v) {
+        Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void goToAboutUs(View v){
         Intent intent = new Intent(MainPageActivity.this, AboutUsActivity.class);
         startActivity(intent);
@@ -91,5 +96,13 @@ public class MainPageActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item= menu.findItem(R.id.action_settings);
+        item.setVisible(false);
+        super.onPrepareOptionsMenu(menu);
+        return true;
     }
 }

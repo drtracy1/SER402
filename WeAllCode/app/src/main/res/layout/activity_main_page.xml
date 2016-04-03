@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="ser402team.weallcode.MainPageActivity"
     android:transitionGroup="false"
-    android:touchscreenBlocksFocus="false">
+    android:touchscreenBlocksFocus="false"
+    android:background="@drawable/bgrainbow_edit">
 
     <RelativeLayout
         android:layout_width="match_parent"

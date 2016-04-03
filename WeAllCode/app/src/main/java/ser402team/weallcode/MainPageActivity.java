@@ -1,6 +1,7 @@
 package ser402team.weallcode;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -36,6 +37,8 @@ public class MainPageActivity extends AppCompatActivity {
         myUsername = bund.getString(MY_USERNAME);
 
         TextView welcomeMsg = (TextView) findViewById(R.id.mainPageUsernameView);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/CHERI___.TTF");
+        welcomeMsg.setTypeface(custom_font);
         String welcomeUser = "Welcome, "+myUsername;
         welcomeMsg.setText(welcomeUser);
 

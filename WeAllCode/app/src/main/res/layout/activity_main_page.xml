@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="ser402team.weallcode.MainPageActivity"
     android:transitionGroup="false"
-    android:touchscreenBlocksFocus="false">
+    android:touchscreenBlocksFocus="false"
+    android:background="@drawable/bgrainbow_edit">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,14 +32,15 @@
 
     </RelativeLayout>
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play"
         android:id="@+id/playButton"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="75dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="51dp"
+        android:src="@drawable/dialogueboxbanner_play"
+        android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -55,24 +57,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Instructions"
-        android:id="@+id/instructionsButton"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/avatarButton"
-        android:layout_marginTop="28dp"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Settings"
         android:id="@+id/settingsButton"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/instructionsButton"
         android:layout_marginTop="28dp"
         android:layout_alignLeft="@+id/avatarButton"
         android:layout_alignStart="@+id/avatarButton"
-        android:onClick="goToSettings"/>
+        android:onClick="goToSettings"
+        android:layout_below="@+id/avatarButton" />
 
     <Button
         android:layout_width="wrap_content"
@@ -92,8 +84,10 @@
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/logOutButton"
+        android:onClick="logOut"
         android:layout_below="@+id/aUbutton"
-        android:layout_centerHorizontal="true"
-        android:onClick="logOut" />
+        android:layout_alignRight="@+id/aUbutton"
+        android:layout_alignEnd="@+id/aUbutton"
+        android:layout_marginTop="37dp" />
 
 </RelativeLayout>

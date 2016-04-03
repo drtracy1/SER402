@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ser402team.weallcode.LoginActivity">
+    tools:context="ser402team.weallcode.LoginActivity"
+    android:background="@drawable/bgrainbow_edit">
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -16,21 +17,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@android:drawable/ic_menu_revert" />
+        android:src="@drawable/sliderarrowleft" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginNameLabel"
-            android:gravity="center"
-            android:text="Login Name"/>
+        android:padding="10dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/imageView7">
 
         <EditText
             android:layout_width="wrap_content"
@@ -38,38 +33,58 @@
             android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:inputType="textLongMessage"
-            android:layout_below="@+id/loginNameLabel"
             android:id="@+id/loginName"
             android:ems="10"
             android:layout_marginBottom="50dp"/>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/passwordLabel"
-            android:layout_below="@+id/loginName"
-            android:gravity="center"
-            android:text="Password" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_centerHorizontal="true"
             android:inputType="textPassword"
-            android:layout_below="@+id/passwordLabel"
             android:id="@+id/password"
-            android:ems="10" />
+            android:ems="10"
+            android:layout_below="@+id/loginName"
+            android:layout_alignLeft="@+id/loginName"
+            android:layout_alignStart="@+id/loginName"
+            android:layout_marginTop="41dp" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign In"
             android:id="@+id/signInButton"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/password"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"
+            android:src="@drawable/accept" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView8"
+            android:src="@drawable/password"
+            android:layout_below="@+id/loginName"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView7"
+        android:src="@drawable/loginname_edit"
+        android:layout_below="@+id/returnToMainPageButton"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView9"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/star" />
 </RelativeLayout>

@@ -87,11 +87,11 @@ public class QuestionActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         //Share button
         //(Right now the ability to share is disabled because of our FB android licsense)
-        ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
-        ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://weallcode.wordpress.com/"))
-                .build();
-        fbShareButton.setShareContent(content);
+        //ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
+        //ShareLinkContent content = new ShareLinkContent.Builder()
+        //        .setContentUrl(Uri.parse("https://weallcode.wordpress.com/"))
+        //        .build();
+        //fbShareButton.setShareContent(content);
 
         //Return button functionality
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
@@ -121,7 +121,10 @@ public class QuestionActivity extends AppCompatActivity {
         final TextView answerButton1 = (TextView) findViewById(R.id.answer1);
         final TextView answerButton2 = (TextView) findViewById(R.id.answer2);
         final TextView answerButton3 = (TextView) findViewById(R.id.answer3);
-
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/CHERI___.TTF");
+        answerButton1.setTypeface(custom_font);
+        answerButton2.setTypeface(custom_font);
+        answerButton3.setTypeface(custom_font);
         //Create an isUsed list to determine which questions have been used
         isUsed = new boolean[questionList.size()];
         Arrays.fill(isUsed, Boolean.FALSE);
@@ -154,7 +157,8 @@ public class QuestionActivity extends AppCompatActivity {
                 }
 
                 TextView questionText = (TextView) findViewById(R.id.questionTextField);
-
+                Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/CHERI___.TTF");
+                questionText.setTypeface(custom_font);
                 if (isAllTrue(isUsed) == false) {     //if not all questions have been used
                     questionText.setText(questionList.get(index).getQuestion()); //get index to question from last if block
                 } else {                            //all questions have been used

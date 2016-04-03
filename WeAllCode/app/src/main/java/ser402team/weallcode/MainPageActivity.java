@@ -1,6 +1,7 @@
 package ser402team.weallcode;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +38,14 @@ public class MainPageActivity extends AppCompatActivity {
         myUsername = bund.getString(MY_USERNAME);
 
         TextView welcomeMsg = (TextView) findViewById(R.id.mainPageUsernameView);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/CHERI___.TTF");
+        welcomeMsg.setTypeface(custom_font);
         String welcomeUser = "Welcome, "+myUsername;
         welcomeMsg.setText(welcomeUser);
 
 
         //Changes the current activity to the Question page
-        Button playButton = (Button) findViewById(R.id.playButton);
+        ImageView playButton = (ImageView) findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +74,7 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     public void goToAvatar(View v){
-        Intent intent = new Intent(MainPageActivity.this, AvatarMenuActivity.class);
+        Intent intent = new Intent(MainPageActivity.this, AvatarActivity.class);
         startActivity(intent);
     }
 

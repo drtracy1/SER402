@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ser402team.weallcode.QuestionActivity">
+    tools:context="ser402team.weallcode.QuestionActivity"
+    android:background="@drawable/bgscene_edit">
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -104,14 +105,5 @@
         android:layout_toEndOf="@+id/answer1"
         android:layout_toRightOf="@+id/answer1" />
 
-
-    <com.facebook.share.widget.ShareButton
-        android:id="@+id/share_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/share"
-        android:layout_alignBottom="@+id/correct"
-        android:layout_alignLeft="@+id/answer1"
-        android:layout_alignStart="@+id/answer1"></com.facebook.share.widget.ShareButton>
 
 </RelativeLayout>

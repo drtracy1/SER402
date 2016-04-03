@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class MainPageActivity extends AppCompatActivity {
 
 
         //Changes the current activity to the Question page
-        Button playButton = (Button) findViewById(R.id.playButton);
+        ImageView playButton = (ImageView) findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -25,6 +25,10 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 //import org.json.JSONException;
 import org.json.JSONException;
@@ -50,12 +54,28 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private LoginButton fbLoginButton;
 
+    public static final String FIREBASE_URL = "https://weallcode-users.firebaseio.com/";
+
     private String email1 = "d@default.com";
     private String name1 = "jon doe";
+    private String nameLast = "doe";
+    private String nameFirst = "john";
     private String gender1 = "man";
     private String locale1 = "NYC";
 
+
+    private static UserInformation ui = null;
+
+
+    public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
+    private static String usernameLowercase = "";
+    private static String username = "";
+    private static String password = "";
+    private static String email = "";
+
     private String hashDev = "5iQu58JfnNr+GkLxJ+XlGjvgSKw=";
+
+     private static boolean  ret = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +83,12 @@ public class MainActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
-        // textViewT = (TextView) findViewById(R.id.textView3);
 
-        //FacebookSdk.sdkInitialize(getApplicationContext());
+
+        //connect to firebase
+        Firebase.setAndroidContext(this);
+        final Firebase REF = new Firebase(FIREBASE_URL);
+
 
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
 
@@ -96,12 +117,64 @@ public class MainActivity extends AppCompatActivity {
                                     //This is just a sample of how to get info from the fb return object. We can get id, gender, age, locale etc. from the facebook login feature.
                                     email1 = object.getString("email"); // eg. wcoomber@asu.edu
                                     name1 = object.getString("name"); // fullname eg. Wesley Coomber
+                                    nameLast = object.getString("last_name");
+                                    nameFirst = object.getString("first_name");
                                     gender1 = object.getString("gender");
                                     locale1 = object.getString("locale");
                                    // textViewT.setText("Hi, " + name1 + ", " + email1 + ", " + gender1 + ", " + locale1);
                                     //System.out.println("Hi2, " + email1 + name1);
 
-                                    Toast.makeText(getApplicationContext(), ("Hi, " + name1 + ", " + email1 + ", " + gender1 + ", " + locale1),
+                                    //Integer tempI = Integer.parseInt(object.getString("id"));]
+                                    Integer tempI = object.getInt("id");
+                                    String tempP = nameLast + (tempI % 1000);
+                                    password = tempP;
+
+                                    setEmail(email1);
+                                    setUsername(nameFirst+nameLast);
+                                    setUsernameLowercase();
+                                    setPassword(tempP);
+
+
+                                    //gather user information into one object
+                                    ui = new UserInformation(getUsername(), getEmail(), getPassword());
+
+
+
+
+                                    if( authenticateLogin(REF)){
+
+                                    }
+                                    //create user if it does not exist
+
+                                    else {
+                                        REF.child("userAccounts").child(getUsernameLowercase()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                                //found account
+                                                if (dataSnapshot.getValue() != null) {
+                                                    //System.out.println("ACCOUNT FOUND");
+                                                    Toast.makeText(getApplicationContext(),
+                                                            "Account already exists. You have used Facebook to login before.",
+                                                            Toast.LENGTH_LONG).show();
+                                                }
+                                                //did not find username
+                                                else {
+                                                    //System.out.println("ACCOUNT NOT FOUND");
+                                                    Firebase user_account = REF.child("userAccounts").child(getUsernameLowercase());
+                                                    user_account.setValue(ui);
+                                                    allowLogin();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(FirebaseError firebaseError) {
+                                                System.out.println("There was an error2");
+                                            }
+                                        });
+                                    }
+
+                                    Toast.makeText(getApplicationContext(), ("Hi, " + name1 + ", USERNAME: " + nameFirst+nameLast + ", PASSWORD: " + tempP),
                                             Toast.LENGTH_LONG).show();
 
 
@@ -119,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
                 request.executeAsync();
             }
 
+
+
+
             @Override
             public void onCancel() {
                 //Log.v("LoginActivity", "cancel");
@@ -135,6 +211,74 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //setters and getters
+    private void setUsername(String un) { username = un; }
+    private void setUsernameLowercase() { usernameLowercase = getUsername().toLowerCase(); }
+    private void setPassword(String pw) { password = pw; }
+    private void setEmail(String em) { email = em; }
+    private String getUsername() { return username; }
+    private String getUsernameLowercase() { return usernameLowercase; }
+    private String getPassword() { return password; }
+    private String getEmail() { return email; }
+
+    //authentication method
+    public boolean authenticateLogin(Firebase REF) {
+        ret = false;
+        //find username
+        REF.child("userAccounts").child(getUsernameLowercase()).
+                addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        //account found
+                        if(dataSnapshot.getValue() != null) {
+                            //get value, turn it into JSONObject, then separate values into string
+                            String str = dataSnapshot.getValue().toString();
+                            try {
+                                JSONObject jObj = new JSONObject(str);
+                                String strUsername = jObj.get("username").toString();
+                                String strPassword = jObj.get("password").toString();
+
+                                //confirm username and password match records
+                                if (strUsername.equalsIgnoreCase(getUsername()) &&
+                                        strPassword.equals(getPassword())) {
+                                    //resetFields();
+                                    ret = true;
+                                    allowLogin();
+
+                                }
+                                //username and password do not match records together
+                                else {
+                                    //Toast.makeText(getApplicationContext(), "Unknown username or password1",Toast.LENGTH_SHORT).show();
+                                    ret = false;
+                                }
+
+                            } catch (JSONException jex) {
+                                jex.printStackTrace();
+                            }
+                        }
+                        //account not found
+                        else {
+                            //Toast.makeText(getApplicationContext(), "Unknown username or password1", Toast.LENGTH_SHORT).show();
+                            ret = false;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        System.out.println("There was an error1");
+                        ret = false;
+                    }
+                });
+        return ret;
+    }
+
+    //allow user to log in after credentials have been authenticated
+    public void allowLogin() {
+        Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
+        intent.putExtra(MY_USERNAME, getUsername());
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

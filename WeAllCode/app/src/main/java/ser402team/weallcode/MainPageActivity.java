@@ -1,6 +1,8 @@
 package ser402team.weallcode;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 /**
  * Created by CrystalGutierrez on 2/3/2016.
  * Modified by DanielTracy
@@ -26,6 +32,9 @@ public class MainPageActivity extends AppCompatActivity {
 
     public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     public static String myUsername = "";
+    public static String absolute_path = "";
+    public static final String ABS_PATH_BEGIN = "/data/data/";
+    public static final String ABS_PATH_END = "/app_imageDir";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,9 @@ public class MainPageActivity extends AppCompatActivity {
         String welcomeUser = "Welcome, "+myUsername;
         welcomeMsg.setText(welcomeUser);
 
+
+        absolute_path = ABS_PATH_BEGIN + getApplicationContext().getPackageName() + ABS_PATH_END;
+        loadImageFromStorage();
 
         //Changes the current activity to the Question page
         ImageView playButton = (ImageView) findViewById(R.id.playButton);
@@ -74,7 +86,8 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     public void goToAvatar(View v){
-        Intent intent = new Intent(MainPageActivity.this, AvatarActivity.class);
+        Intent intent = new Intent(MainPageActivity.this, AvatarMenuActivity.class);
+        intent.putExtra(MY_USERNAME, myUsername);
         startActivity(intent);
     }
 
@@ -105,5 +118,18 @@ public class MainPageActivity extends AppCompatActivity {
         item.setVisible(false);
         super.onPrepareOptionsMenu(menu);
         return true;
+    }
+
+    protected void loadImageFromStorage() {
+        try {
+            File file = new File(absolute_path, myUsername + ".jpg");
+            if(file.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
+                ImageView imageView = (ImageView) findViewById(R.id.avatarImageView);
+                imageView.setImageBitmap(bitmap);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

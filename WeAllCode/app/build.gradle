@@ -49,4 +49,5 @@ dependencies {
     compile 'com.facebook.android:audience-network-sdk:4.+'
     //Facebook SDK
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

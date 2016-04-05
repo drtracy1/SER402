@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="135dp"
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
         android:padding="10dp"
@@ -19,7 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,64 +30,85 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/avatarImageView"
+            android:layout_below="@id/mainPageUsernameView"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/playButton"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:id="@+id/relativeLayout2"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="51dp"
-        android:src="@drawable/dialogueboxbanner_play"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Avatar"
-        android:id="@+id/avatarButton"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/playButton"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:onClick="goToAvatar" />
+        android:layout_marginTop="75dp" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:id="@+id/settingsButton"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="28dp"
-        android:layout_alignLeft="@+id/avatarButton"
-        android:layout_alignStart="@+id/avatarButton"
-        android:onClick="goToSettings"
-        android:layout_below="@+id/avatarButton" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:id="@+id/playButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="51dp"
+            android:src="@drawable/dialogueboxbanner_play"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About Us"
-        android:id="@+id/aUbutton"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/settingsButton"
-        android:layout_alignLeft="@+id/settingsButton"
-        android:layout_alignStart="@+id/settingsButton"
-        android:layout_marginTop="28dp"
-        android:onClick="goToAboutUs" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avatar"
+            android:id="@+id/avatarButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/playButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:onClick="goToAvatar" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:id="@+id/logOutButton"
-        android:onClick="logOut"
-        android:layout_below="@+id/aUbutton"
-        android:layout_alignRight="@+id/aUbutton"
-        android:layout_alignEnd="@+id/aUbutton"
-        android:layout_marginTop="37dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:id="@+id/settingsButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:layout_alignLeft="@+id/avatarButton"
+            android:layout_alignStart="@+id/avatarButton"
+            android:onClick="goToSettings"
+            android:layout_below="@+id/avatarButton" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:id="@+id/aUbutton"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/settingsButton"
+            android:layout_alignLeft="@+id/settingsButton"
+            android:layout_alignStart="@+id/settingsButton"
+            android:layout_marginTop="28dp"
+            android:onClick="goToAboutUs" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:id="@+id/logOutButton"
+            android:onClick="logOut"
+            android:layout_below="@+id/aUbutton"
+            android:layout_alignRight="@+id/aUbutton"
+            android:layout_alignEnd="@+id/aUbutton"
+            android:layout_marginTop="37dp" />
+
+    </RelativeLayout>
 </RelativeLayout>

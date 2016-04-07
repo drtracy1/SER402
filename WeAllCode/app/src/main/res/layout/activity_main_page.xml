@@ -60,7 +60,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="51dp"
             android:src="@drawable/dialogueboxbanner_play"
-            android:layout_below="@+id/relativeLayout"
             android:layout_centerHorizontal="true" />
 
         <Button

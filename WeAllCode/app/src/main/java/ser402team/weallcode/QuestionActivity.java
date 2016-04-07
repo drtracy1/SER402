@@ -81,7 +81,7 @@ public class QuestionActivity extends AppCompatActivity {
         myUsername = bund.getString(MY_USERNAME);
 
         //add timer text
-        startTimer();
+        //startTimer();
 
         //Enable Facebook SDK
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -167,7 +167,7 @@ public class QuestionActivity extends AppCompatActivity {
                 isUsed[index] = true;
 
                 //resets the timer for new question.
-                startTimer();
+                //startTimer();
                 current = questionList.get(index); //Get the current QuestionAnswer in the list
 
                 //Initialize unique answers for every questions
@@ -370,6 +370,7 @@ public class QuestionActivity extends AppCompatActivity {
         });
     }
 
+    /*
     protected void startTimer() {
         final EditText timerTextField = (EditText) findViewById(R.id.timer);
         timerTextField.setBackgroundColor(Color.TRANSPARENT);
@@ -399,6 +400,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         }.start();
     }
+    */
 
     protected void setAnswerQuestion(String q, String a, String w1, String w2) {
         QuestionAnswer qa = new QuestionAnswer(q, a, w1, w2);

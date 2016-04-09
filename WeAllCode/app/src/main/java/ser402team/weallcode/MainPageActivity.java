@@ -66,36 +66,36 @@ public class MainPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView avatarButton = (ImageView) findViewById(R.id.avatarButton);
+        avatarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPageActivity.this, AvatarActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView aboutButton = (ImageView) findViewById(R.id.aUbutton);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPageActivity.this, AboutUsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView logButton = (ImageView) findViewById(R.id.logOutButton);
+        logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPageActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public void logOut(View v) {
-        Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToAboutUs(View v){
-        Intent intent = new Intent(MainPageActivity.this, AboutUsActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToAvatar(View v){
-        Intent intent = new Intent(MainPageActivity.this, AvatarMenuActivity.class);
-        intent.putExtra(MY_USERNAME, myUsername);
-        startActivity(intent);
-    }
-
-    public void goToSettings(View v){
-        Intent intent = new Intent(MainPageActivity.this, SettingsActivity.class);
-        intent.putExtra(MY_USERNAME, myUsername);
-        startActivity(intent);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

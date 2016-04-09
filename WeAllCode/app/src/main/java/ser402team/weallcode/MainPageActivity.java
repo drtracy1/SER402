@@ -36,10 +36,14 @@ public class MainPageActivity extends AppCompatActivity {
     public static final String ABS_PATH_BEGIN = "/data/data/";
     public static final String ABS_PATH_END = "/app_imageDir";
 
+    private static Bitmap bmpFB = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        ImageView view = (ImageView)findViewById(R.id.playButton);
 
         //get username from LoginActivity
         // NOTE: **** if pushed back button from another page, then issues may arise ****
@@ -51,6 +55,17 @@ public class MainPageActivity extends AppCompatActivity {
         welcomeMsg.setTypeface(custom_font);
         String welcomeUser = "Welcome, "+myUsername;
         welcomeMsg.setText(welcomeUser);
+
+        //If bytearray translated bitmap image of facebook profile pic is passed in the intent, then get that bitmap and translate it back into usuable .bmp form
+        /*
+        if (getIntent().getByteArrayExtra(("imgFB"))!=null){
+            byte[] byteArray = getIntent().getByteArrayExtra("imgFB");
+            bmpFB = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+            view.setImageBitmap(bmpFB);
+            android.util.Log.w(getClass().getSimpleName(), "fromBit: onCreate()");
+        }
+        */
 
 
         absolute_path = ABS_PATH_BEGIN + getApplicationContext().getPackageName() + ABS_PATH_END;

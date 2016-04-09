@@ -2,11 +2,14 @@ package ser402team.weallcode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import android.util.Patterns;
@@ -36,11 +39,32 @@ public class CreateAccActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_acc);
 
+        TextView topText = (TextView) findViewById(R.id.textView2);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/CHERI___.TTF");
+        topText.setTypeface(custom_font);
+        topText.setText("Create Account");
+
+        TextView userText = (TextView) findViewById(R.id.editNameLabel);
+        userText.setTypeface(custom_font);
+        userText.setText("User Name");
+
+        TextView emailText = (TextView) findViewById(R.id.editEmailLabel);
+        emailText.setTypeface(custom_font);
+        emailText.setText("E-Mail");
+
+        TextView passText = (TextView) findViewById(R.id.editPasswordLabel1);
+        passText.setTypeface(custom_font);
+        passText.setText("Password");
+
+        TextView passText2 = (TextView) findViewById(R.id.editPasswordLabel2);
+        passText2.setTypeface(custom_font);
+        passText2.setText("Re-Enter Password");
+
         //connect to firebase
         Firebase.setAndroidContext(this);
         final Firebase REF = new Firebase(FIREBASE_URL);
 
-        Button createAccountButt = (Button) findViewById(R.id.buttonDone);
+        ImageView createAccountButt = (ImageView) findViewById(R.id.buttonDone);
         createAccountButt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //get username, password and email from user

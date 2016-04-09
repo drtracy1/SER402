@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         final Firebase REF = new Firebase("https://weallcode-users.firebaseio.com/");
 
         //Return button functionality
-        ImageButton returnButton = (ImageButton) findViewById(R.id.returnToMainPageButton);
+        ImageView returnButton = (ImageView) findViewById(R.id.returnToMainPageButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

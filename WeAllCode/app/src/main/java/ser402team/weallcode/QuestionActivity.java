@@ -94,7 +94,7 @@ public class QuestionActivity extends AppCompatActivity {
         //fbShareButton.setShareContent(content);
 
         //Return button functionality
-        ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
+        ImageView returnButton = (ImageView) findViewById(R.id.returnButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         //Return button functionality
-        ImageButton chatButton = (ImageButton) findViewById(R.id.chatIconButton);
+        ImageView chatButton = (ImageView) findViewById(R.id.chatIconButton);
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +130,7 @@ public class QuestionActivity extends AppCompatActivity {
         Arrays.fill(isUsed, Boolean.FALSE);
 
         //Next question functionality
-        Button nextQuestionButton = (Button) findViewById(R.id.nextQuestionButton);
+        ImageView nextQuestionButton = (ImageView) findViewById(R.id.nextQuestionButton);
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

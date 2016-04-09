@@ -7,14 +7,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ser402team.weallcode.CreateAccActivity">
+    tools:context="ser402team.weallcode.CreateAccActivity"
+    android:background="@drawable/bgrainbow_edit">
 
     <!-- Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create Account"
         android:id="@+id/textView2"
         android:gravity="center"
         android:layout_marginTop="20dp"/>
@@ -105,13 +105,13 @@
     </RelativeLayout>
 
     <!-- done checks user credentials -->
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
         android:id="@+id/buttonDone"
+        android:src="@drawable/accept"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

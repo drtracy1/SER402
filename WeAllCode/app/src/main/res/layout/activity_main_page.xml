@@ -79,6 +79,19 @@
             android:layout_alignLeft="@+id/avatarButton"
             android:layout_alignStart="@+id/avatarButton" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tweet"
+            android:id="@+id/tweet_Button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/tweet_button"
+            android:layout_below="@+id/aUbutton"
+            android:layout_alignLeft="@+id/aUbutton"
+            android:layout_alignStart="@+id/aUbutton"
+            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

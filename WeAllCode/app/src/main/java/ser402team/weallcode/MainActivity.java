@@ -30,6 +30,10 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
+
 //import org.json.JSONException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +50,11 @@ import java.util.Arrays;
         */
 
 public class MainActivity extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "naxf6CjkvdAcmwUMT4arT2n32";
+    private static final String TWITTER_SECRET = "4GeK4IkXjp4yDl86vVQaueMhadSncLWlhReATS1ZKUYWF5qlOo ";
+
 
     private ImageView logoView1;
 
@@ -80,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
+
         callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);

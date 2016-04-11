@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ser402team.weallcode">
+    package="ser402team.weallcode" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar" >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -22,7 +22,7 @@
         <activity
             android:name=".MainActivity"
             android:label="WeAllCode"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,7 +59,10 @@
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".Confirmation" />
         <activity android:name=".AvatarMenuActivity" />
-        <activity android:name=".GravatarActivity"></activity>
+        <activity android:name=".GravatarActivity" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b9efbba4d587539412c3373f3819137f7a80da34" />
     </application>
 
 </manifest>

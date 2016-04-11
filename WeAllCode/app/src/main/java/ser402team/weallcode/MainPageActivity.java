@@ -21,6 +21,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
+
 /**
  * Created by CrystalGutierrez on 2/3/2016.
  * Modified by DanielTracy
@@ -36,10 +41,17 @@ public class MainPageActivity extends AppCompatActivity {
     public static final String ABS_PATH_BEGIN = "/data/data/";
     public static final String ABS_PATH_END = "/app_imageDir";
 
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "naxf6CjkvdAcmwUMT4arT2n32";
+    private static final String TWITTER_SECRET = "4GeK4IkXjp4yDl86vVQaueMhadSncLWlhReATS1ZKUYWF5qlOo ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig), new TweetComposer());
 
         //get username from LoginActivity
         // NOTE: **** if pushed back button from another page, then issues may arise ****
@@ -94,7 +106,28 @@ public class MainPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                .text("This is a fun app.");
+        builder.show();
+
+
+        //ImageView tweetButton = (ImageView) findViewById(R.id.tweet_Button);
+        //tweetButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+        //                .text("This is a fun app.");
+        //        builder.show();
+
+
+        //    }
+        //});
     }
+
+
+
 
 
     @Override

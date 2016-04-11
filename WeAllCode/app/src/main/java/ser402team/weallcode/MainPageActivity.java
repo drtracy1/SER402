@@ -109,13 +109,6 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //TweetComposer.Builder builder = new TweetComposer.Builder(this)
-        //        .text("https://weallcode.wordpress.com/");
-       // builder.show();
-
-
         ImageView tweetButton = (ImageView) findViewById(R.id.tweet_Button);
         tweetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,14 +117,6 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void tweetComposed () {
-        TweetComposer.Builder builder = new TweetComposer.Builder(this)
-                .text("Great app: https://weallcode.wordpress.com/");
-
-        builder.show();
-    }
-
 
 
     @Override
@@ -168,5 +153,12 @@ public class MainPageActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void tweetComposed () {
+        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                .text("Great app: https://weallcode.wordpress.com/");
+
+        builder.show();
     }
 }

@@ -45,6 +45,8 @@ public class MainPageActivity extends AppCompatActivity {
     private static final String TWITTER_KEY = "naxf6CjkvdAcmwUMT4arT2n32";
     private static final String TWITTER_SECRET = "4GeK4IkXjp4yDl86vVQaueMhadSncLWlhReATS1ZKUYWF5qlOo ";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,25 +110,27 @@ public class MainPageActivity extends AppCompatActivity {
         });
 
 
-        TweetComposer.Builder builder = new TweetComposer.Builder(this)
-                .text("This is a fun app.");
-        builder.show();
+
+        //TweetComposer.Builder builder = new TweetComposer.Builder(this)
+        //        .text("https://weallcode.wordpress.com/");
+       // builder.show();
 
 
-        //ImageView tweetButton = (ImageView) findViewById(R.id.tweet_Button);
-        //tweetButton.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        TweetComposer.Builder builder = new TweetComposer.Builder(this)
-        //                .text("This is a fun app.");
-        //        builder.show();
-
-
-        //    }
-        //});
+        ImageView tweetButton = (ImageView) findViewById(R.id.tweet_Button);
+        tweetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tweetComposed();
+            }
+        });
     }
 
+    public void tweetComposed () {
+        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                .text("Great app: https://weallcode.wordpress.com/");
 
+        builder.show();
+    }
 
 
 

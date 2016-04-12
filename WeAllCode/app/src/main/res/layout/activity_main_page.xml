@@ -101,14 +101,15 @@
             android:layout_alignRight="@+id/avatarButton"
             android:layout_alignEnd="@+id/avatarButton" />
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/avatarImageView"
+            android:layout_alignBottom="@+id/tweet_Button"
+            android:layout_toLeftOf="@+id/mainPageUsernameView"
+            android:layout_toStartOf="@+id/mainPageUsernameView"
+            android:layout_alignTop="@+id/tweet_Button" />
+
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/avatarImageView"
-        android:layout_below="@+id/relativeLayout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>

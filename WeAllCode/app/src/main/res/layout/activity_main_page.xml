@@ -52,9 +52,11 @@
             android:text="Play"
             android:id="@+id/playButton"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="41dp"
             android:src="@drawable/dialogueboxbanner_play"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@+id/mainPageUsernameView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="55dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -87,10 +89,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="28dp"
             android:src="@drawable/tweet_button"
-            android:layout_below="@+id/aUbutton"
-            android:layout_alignLeft="@+id/aUbutton"
-            android:layout_alignStart="@+id/aUbutton"
-            />
+            android:layout_below="@+id/aUbutton" />
 
         <TextView
             android:layout_width="wrap_content"

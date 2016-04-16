@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +44,7 @@ import java.util.Random;
  *@author daniel tracy
  * Timer and retrieve DB data methods by Kristel
  * Timer updated by Crystal
+ * Timer deleted by Kristel (4/16/16)
  *
  * @update Kristel Basra 3/19/2016
  * Able to get username to this page
@@ -79,9 +79,6 @@ public class QuestionActivity extends AppCompatActivity {
         //get username
         Bundle bund = getIntent().getExtras();
         myUsername = bund.getString(MY_USERNAME);
-
-        //add timer text
-        //startTimer();
 
         //Enable Facebook SDK
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -166,8 +163,6 @@ public class QuestionActivity extends AppCompatActivity {
                 }
                 isUsed[index] = true;
 
-                //resets the timer for new question.
-                //startTimer();
                 current = questionList.get(index); //Get the current QuestionAnswer in the list
 
                 //Initialize unique answers for every questions
@@ -248,24 +243,6 @@ public class QuestionActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             setQuestion(REF);
         }
-
-        /*
-        QuestionAnswer qA1 = new QuestionAnswer("1 kilobyte is equal to: ", "1024 bytes", "1000 bytes, duh", "1064 bytes");
-        QuestionAnswer qA2 = new QuestionAnswer("What do you use to repeat segments of code?", "Loops", "Rings", "Repeaters");
-        QuestionAnswer qA3 = new QuestionAnswer("What do strings represent?", "Character sequences", "Cotton", "Integers");
-        QuestionAnswer qA4 = new QuestionAnswer("What does CPU stand for?", "Central Processing Unit", "Cat Plays Undertale", "Computer Processor Unit");
-        QuestionAnswer qA5 = new QuestionAnswer("What are Window's and Mac OSX's software called?", "Operating Systems", "Computers", "Nouns");
-        QuestionAnswer qA6 = new QuestionAnswer("Java is considered a what?", "Programming Language", "Delicious Coffee", "Operating System");
-        QuestionAnswer qA7 = new QuestionAnswer("A GPU's purpose is to: ", "Process Graphics", "Go Fast", "Save your Data");
-
-        addQuestionToList(qA1);
-        addQuestionToList(qA2);
-        addQuestionToList(qA3);
-        addQuestionToList(qA4);
-        addQuestionToList(qA5);
-        addQuestionToList(qA6);
-        addQuestionToList(qA7);
-        */
     }
 
     //Add the string to the list
@@ -369,38 +346,6 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*
-    protected void startTimer() {
-        final EditText timerTextField = (EditText) findViewById(R.id.timer);
-        timerTextField.setBackgroundColor(Color.TRANSPARENT);
-        timerTextField.setTypeface(Typeface.DEFAULT);
-
-        new CountDownTimer(31000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                timerTextField.setText(" Time remaining: " + millisUntilFinished / 1000 + " ");
-                if ((millisUntilFinished / 1000) == 5) {
-                    timerTextField.setBackgroundColor(Color.RED);
-                } else if ((millisUntilFinished / 1000) == 4) {
-                    timerTextField.setBackgroundColor(Color.TRANSPARENT);
-                } else if ((millisUntilFinished / 1000) == 3) {
-                    timerTextField.setBackgroundColor(Color.RED);
-                } else if ((millisUntilFinished / 1000) == 2) {
-                    timerTextField.setBackgroundColor(Color.TRANSPARENT);
-                } else if ((millisUntilFinished / 1000) <= 1) {
-                    timerTextField.setBackgroundColor(Color.RED);
-                }
-            }
-
-            public void onFinish() {
-                timerTextField.setText(" Times Up! ");
-                timerTextField.setTypeface(Typeface.DEFAULT_BOLD);
-
-            }
-        }.start();
-    }
-    */
 
     protected void setAnswerQuestion(String q, String a, String w1, String w2) {
         QuestionAnswer qa = new QuestionAnswer(q, a, w1, w2);

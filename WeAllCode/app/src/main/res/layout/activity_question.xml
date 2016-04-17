@@ -38,8 +38,8 @@
         android:id="@+id/chatIconButton"
         android:src="@drawable/chaticon_edit"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/questionTextField"
+        android:layout_alignEnd="@+id/questionTextField" />
 
     <ImageView
         android:layout_width="wrap_content"

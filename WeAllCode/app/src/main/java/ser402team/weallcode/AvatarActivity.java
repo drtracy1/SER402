@@ -22,7 +22,6 @@ public class AvatarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avatar_activity);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar)
     }
 
     public void selectAvatar(View v){

@@ -27,10 +27,6 @@ public class AboutUsActivity extends AppCompatActivity {
         int id = v.getId();
 
         if (id == R.id.imageView1) {
-            /*Toast.makeText(getApplicationContext(), "wcoomber@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"wcoomber@asu.edu"});
@@ -43,11 +39,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         }
         else if (id == R.id.imageView2) {
-            /*
-            Toast.makeText(getApplicationContext(), "cgutier9@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"cgutier9@asu.edu"});
@@ -60,11 +51,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         }
         else if (id == R.id.imageView3) {
-            /*
-            Toast.makeText(getApplicationContext(), "klicata@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"klicata@asu.edu"});
@@ -77,11 +63,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         }
         else if (id == R.id.imageView4) {
-            /*
-            Toast.makeText(getApplicationContext(), "edressle@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"edressle@asu.edu"});
@@ -94,11 +75,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         }
         else if (id == R.id.imageView5) {
-            /*
-            Toast.makeText(getApplicationContext(), "alandry1@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"alandry1@asu.edu"});
@@ -111,11 +87,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         }
         else if (id == R.id.imageView6) {
-            /*
-            Toast.makeText(getApplicationContext(), "drtracy1@asu.edu",
-                    Toast.LENGTH_SHORT).show();
-                    */
-
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"drtracy1@asu.edu"});

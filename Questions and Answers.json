@@ -233,7 +233,7 @@
         },
         "33" : {
             "Difficulty": 1,
-            "Question": "\"Apple Inc. was founded by these two men--\"",
+            "Question": "\"Apple Inc. was founded by these two entrepenuers--\"",
             "Answer": "\"Steve Jobs and Steve Wozniak\"",
             "Wrong1": "\"Steve Jobs and Bill Gates\"",
             "Wrong2": "\"Steve Jobs and Steve-O\""

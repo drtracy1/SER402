@@ -157,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
                                     ui = new UserInformation(getUsername(), getEmail(), getPassword());
 
                                     //translate fbImage into bitmap -> bmpFB
-                                    ImageView fbImage = ( ( ImageView)fbIcon.getChildAt( 0));
-                                        bmpFB  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap();
+                                    //ImageView fbImage = ( ( ImageView)fbIcon.getChildAt( 0));
+                                    //    bmpFB  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap();
 
 
                                     if( authenticateLogin(REF)){

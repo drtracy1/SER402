@@ -64,5 +64,11 @@
         android:layout_marginTop="46dp"
         android:src="@drawable/dialogueboxwindow_weallcodeyellow2" />
 
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/fbPic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_Login"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

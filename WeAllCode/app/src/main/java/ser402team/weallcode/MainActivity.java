@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         final Firebase REF = new Firebase(FIREBASE_URL);
 
-        final ProfilePictureView fbIcon = (ProfilePictureView) findViewById(R.id.fbPic1);
+        //final ProfilePictureView fbIcon = (ProfilePictureView) findViewById(R.id.fbPic1);
 
 
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
                                     //Picasso.with(MainActivity.this).load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(fbPic1);
                                     //android.util.Log.w(getClass().getSimpleName(), "https://graph.facebook.com/" + userID+ "/picture?type=large");
 
-                                    //use the nifty new ProfilePictureView to display user's facebook icon.
-                                    fbIcon.setProfileId(object.getString("id"));
+                                    // use the nifty new ProfilePictureView to display user's facebook icon.
+                                    // fbIcon.setProfileId(object.getString("id"));
                                     android.util.Log.w(getClass().getSimpleName(), "pPV: " + object.getString("id"));
 
                                     //gather user information into one object

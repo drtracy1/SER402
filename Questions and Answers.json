@@ -242,8 +242,8 @@
             "Difficulty": 2,
             "Question": "\"What qualities do you need to become a quality programmer and computer scientist?\"",
             "Answer": "\"Curious, Hardworking, and interest in Problem-Solving\"",
-            "Wrong1": "\"Nerdy, Glasses, Proficient at Video Games\"",
-            "Wrong2": "\"Math genius, rap god, world-class typist\""
+            "Wrong1": "\"Nerdy, Glasses, and Proficient at Video Games\"",
+            "Wrong2": "\"Math genius, rap god, and world-class typist\""
         },
         "35" : {
             "Difficulty": 2,
@@ -251,6 +251,41 @@
             "Answer": "\"Random Access Memory\"",
             "Wrong1": "\"Read Anywhere Memory\"",
             "Wrong2": "\"Random Anti Matter\""
+        },
+        "36" : {
+            "Difficulty": 1,
+            "Question": "\"What mega media company merged with AOL at the turn of the century?\"",
+            "Answer": "\"Time Warner\"",
+            "Wrong1": "\"Comcast\"",
+            "Wrong2": "\"Fox Media\""
+        },
+        "37" : {
+            "Difficulty": 2,
+            "Question": "\"Name the famous computer scientist who worked to break Nazi codes at Bletchley Park during WWII.\"",
+            "Answer": "\"Alan Turing\"",
+            "Wrong1": "\"Steve Jobs\"",
+            "Wrong2": "\"Bill Gates\""
+        },
+        "38" : {
+            "Difficulty": 2,
+            "Question": "\"You need to be wealthy to learn programming? \"",
+            "Answer": "\"False\"",
+            "Wrong1": "\"True, you need at least 5 benzes to start programming.\"",
+            "Wrong2": "\"True, you need a +1000$ PC to learn programming.\""
+        },
+        "39" : {
+            "Difficulty": 1,
+            "Question": "\"What year was Google founded?\"",
+            "Answer": "\" 1998.\"",
+            "Wrong1": "\" 2001\"",
+            "Wrong2": "\" 2008\""
+        },
+        "40" : {
+            "Difficulty": 0,
+            "Question": "\"What Apple portable debuted in a choice of two fruity color schemes, Blueberry or Tangerine?\"",
+            "Answer": "\" The iBook.\"",
+            "Wrong1": "\" The iPhone.\"",
+            "Wrong2": "\" The iPad.\""
         }
     }
 }

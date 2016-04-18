@@ -1,6 +1,9 @@
 package ser402team.weallcode;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,16 +28,19 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 //import org.json.JSONException;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
+import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ImageView logoView1;
+    private ImageView fbPic1;
 
     private TextView textViewT;
 
@@ -76,10 +83,13 @@ public class MainActivity extends AppCompatActivity {
     private static String username = "";
     private static String password = "";
     private static String email = "";
+    private static String userID = "-1";
 
     private String hashDev = "5iQu58JfnNr+GkLxJ+XlGjvgSKw=";
 
      private static boolean  ret = false;
+
+    private static Bitmap bmpFB = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         //connect to firebase
         Firebase.setAndroidContext(this);
         final Firebase REF = new Firebase(FIREBASE_URL);
+
+        final ProfilePictureView fbIcon = (ProfilePictureView) findViewById(R.id.fbPic1);
 
 
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
@@ -136,15 +148,23 @@ public class MainActivity extends AppCompatActivity {
                                     password = tempP;
 
                                     setEmail(email1);
-                                    setUsername(nameFirst+nameLast);
+                                    setUsername(nameFirst + nameLast);
                                     setUsernameLowercase();
                                     setPassword(tempP);
 
+                                    //Picasso.with(MainActivity.this).load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(fbPic1);
+                                    //android.util.Log.w(getClass().getSimpleName(), "https://graph.facebook.com/" + userID+ "/picture?type=large");
+
+                                    //use the nifty new ProfilePictureView to display user's facebook icon.
+                                    fbIcon.setProfileId(object.getString("id"));
+                                    android.util.Log.w(getClass().getSimpleName(), "pPV: " + object.getString("id"));
 
                                     //gather user information into one object
                                     ui = new UserInformation(getUsername(), getEmail(), getPassword());
 
-
+                                    //translate fbImage into bitmap -> bmpFB
+                                    //ImageView fbImage = ( ( ImageView)fbIcon.getChildAt( 0));
+                                    //    bmpFB  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap();
 
 
                                     if( authenticateLogin(REF)){
@@ -193,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id, first_name, name, last_name, email,gender, age_range, locale");
+                parameters.putString("fields", "id, first_name, name, last_name, email,gender, age_range, picture, locale");
                 request.setParameters(parameters);
                 request.executeAsync();
             }
@@ -216,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
+
+
 
     //setters and getters
     private void setUsername(String un) { username = un; }
@@ -282,8 +304,27 @@ public class MainActivity extends AppCompatActivity {
     //allow user to log in after credentials have been authenticated
     public void allowLogin() {
         Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
+
+        android.util.Log.w(getClass().getSimpleName(), "allowLogin() Start" );
+
+        //convert the bitmap version of the fb profile pic into a byte stream because bitmap is not serializable.
+        if (bmpFB != null){
+            ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+            bmpFB.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+            byte[] byteArrayFB = bStream.toByteArray();
+
+            intent.putExtra("imgFB", byteArrayFB);
+            android.util.Log.w(getClass().getSimpleName(), "toBit: allowLogin() Success" );
+
+        }
+        else{
+            android.util.Log.w(getClass().getSimpleName(), "toBit: allowLogin() FAILED" );
+        }
+
+
         intent.putExtra(MY_USERNAME, getUsername());
-        startActivity(intent);
+          startActivity(intent);
+        finish();
     }
 
     @Override

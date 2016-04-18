@@ -2,10 +2,10 @@
     "questionAnswer" : {
         "0" : {
             "Difficulty": 0,
-            "Question": "\"What color is the sky?\"",
-            "Answer": "\"Blue\"",
-            "Wrong1": "\"Green\"",
-            "Wrong2": "\"Maroon\""
+            "Question": "\"What is a bit?\"",
+            "Answer": "\"Any pair of opposites\"",
+            "Wrong1": "\"The ball of a mouse\"",
+            "Wrong2": "\"Cable\""
         },
         "1" : {
             "Difficulty": 0,
@@ -17,7 +17,7 @@
         "2" : {
             "Difficulty": 0,
             "Question": "\"1 kilobyte is equal to\"",
-            "Answer": "\"1000 bytes, duh\"",
+            "Answer": "\"1000 bytes\"",
             "Wrong1": "\"1024 bytes\"",
             "Wrong2": "\"1064 bytes\""
         },
@@ -30,24 +30,24 @@
         },
         "4" : {
             "Difficulty": 1,
-            "Question": "\"Which of the following is an example of arithmetic operators in computer science?\"",
-            "Answer": "\"+ -\"",
-            "Wrong1": "\"Keyboard\"",
-            "Wrong2": "\"Mouse\""
+            "Question": "\"8 bits make up of how many bytes\"",
+            "Answer": "\"1\"",
+            "Wrong1": "\"100\"",
+            "Wrong2": "\"1000\""
         },
         "5" : {
             "Difficulty": 0,
             "Question": "\"What is computer science?\"",
             "Answer": "\"Scientific approach to computation and its applications\"",
-            "Wrong1": "\"Keyboard\"",
-            "Wrong2": "\"Mouse\""
+            "Wrong1": "\"Study of human behavior and their minds\"",
+            "Wrong2": "\"Study of life\""
         },
         "6" : {
             "Difficulty": 0,
-            "Question": "\"What is a computer\"",
-            "Answer": "\"An electronic device that calculates, manipulates, and stores information?\"",
-            "Wrong1": "\"Keyboard\"",
-            "Wrong2": "\"Mouse\""
+            "Question": "\"What an electronic device that calculates, manipulates, and stores information?\"",
+            "Answer": "\"Computer\"",
+            "Wrong1": "\"Ninja\"",
+            "Wrong2": "\"Vehicle\""
         },
         "7" : {
             "Difficulty": 1,
@@ -60,12 +60,12 @@
             "Difficulty": 0,
             "Question": "\"What do strings represent?\"",
             "Answer": "\"Character sequences\"",
-            "Wrong1": "\"Cotton\"",
+            "Wrong1": "\"Objects\"",
             "Wrong2": "\"Integers\""
         },
         "9" : {
             "Difficulty": 0,
-            "Question": "\"What are Window's and Mac OSX's software called?\"",
+            "Question": "\"What is the main program, like Window's and Mac OSX, called that runs other programs?\"",
             "Answer": "\"Operating Systems\"",
             "Wrong1": "\"Computers\"",
             "Wrong2": "\"Nouns\""
@@ -86,201 +86,285 @@
         },
         "12" : {
             "Difficulty": 0,
-            "Question": "\"1 byte is equal to\"",
-            "Answer": "\"8 bits\"",
-            "Wrong1": "\"1 floppy-disk\"",
-            "Wrong2": "\"8 bytes\""
+            "Question": "\"Computers physically send bits by\"",
+            "Answer": "\"Electricity, light, and radio waves\"",
+            "Wrong1": "\"Mail carriers and mail trucks\"",
+            "Wrong2": "\"Morse code and semaphores\""
         },
         "13" : {
+            "Difficulty": 0,
+            "Question": "\"A set of rules and standards used to communicate between machines is:\"",
+            "Answer": "\"Protocol\"",
+            "Wrong1": "\"Library\"",
+            "Wrong2": "\"Algorithm\""
+        },
+        "14" : {
+            "Difficulty": 0,
+            "Question": "\"A step by step process to solve a problem is called:\"",
+            "Answer": "\"Algorithm\"",
+            "Wrong1": "\"Ethernet\"",
+            "Wrong2": "\"Protocol\""
+        },
+        "15" : {
+            "Difficulty": 0,
+            "Question": "\"How many devices are allowed to have the same IP address?\"",
+            "Answer": "\"None\"",
+            "Wrong1": "\"2\"",
+            "Wrong2": "\"All devices\""
+        },
+        "16" : {
+            "Difficulty": 0,
+            "Question": "\"What is considered a number that uniquely identifies a device on the network?\"",
+            "Answer": "\"IP Address\"",
+            "Wrong1": "\"Ethernet\"",
+            "Wrong2": "\"TEST\""
+        },
+        "17" : {
+            "Difficulty": 0,
+            "Question": "\"Traditionally, how many bits are used in an IP address (IPv4)?\"",
+            "Answer": "\"32\"",
+            "Wrong1": "\"25\"",
+            "Wrong2": "\"50\""
+        },
+        "18" : {
+            "Difficulty": 0,
+            "Question": "\"How many bits does an IPv6 use for an IP address\"",
+            "Answer": "\"128\"",
+            "Wrong1": "\"150\"",
+            "Wrong2": "\"200\""
+        },
+        "19" : {
+            "Difficulty": 0,
+            "Question": "\"What is the physical way of communicating data through the world wide web?\"",
+            "Answer": "\"HTTP\"",
+            "Wrong1": "\"HTML\"",
+            "Wrong2": "\"CSS\""
+        },
+        "20" : {
+            "Difficulty": 0,
+            "Question": "\"What language describes web documents for web pages\"",
+            "Answer": "\"HTML\"",
+            "Wrong1": "\"HTTP\"",
+            "Wrong2": "\"XML\""
+        },
+        "21" : {
+            "Difficulty": 0,
+            "Question": "\"What language helps style a web page\"",
+            "Answer": "\"CSS\"",
+            "Wrong1": "\"XML\"",
+            "Wrong2": "\"HTTP\""
+        },
+        "22" : {
+            "Difficulty": 0,
+            "Question": "\"What is considered hardware?\"",
+            "Answer": "\"Physical components of a computer\"",
+            "Wrong1": "\"Internet\"",
+            "Wrong2": "\"Bits\""
+        },
+        "23" : {
+            "Difficulty": 0,
+            "Question": "\"What is software?\"",
+            "Answer": "\"Digital instructions run by a computer\"",
+            "Wrong1": "\"A mouse\"",
+            "Wrong2": "\"A keyboard\""
+        },
+        "24" : {
+            "Difficulty": 0,
+            "Question": "\"What is a piece of software that has a specific task?\"",
+            "Answer": "\"Program\"",
+            "Wrong1": "\"Hardware\"",
+            "Wrong2": "\"Ethernet\""
+        },
+        "25" : {
+            "Difficulty": 0,
+            "Question": "\"What is a program for browsing web pages from the internet?\"",
+            "Answer": "\"Web browser\"",
+            "Wrong1": "\"Word processor\"",
+            "Wrong2": "\"Instant messenger\""
+        },
+        "26" : {
             "Difficulty": 1,
             "Question": "\"What does the acronym HTML stand for?\"",
             "Answer": "\"HyperText Markup Language\"",
             "Wrong1": "\"HyperTrans Markdown Language\"",
             "Wrong2": "\"HyperText Modified Language\""
         },
-        "14" : {
+        "27" : {
             "Difficulty": 1,
             "Question": "\"What does the acronym CSS stand for?\"",
             "Answer": "\"Cascading Style Sheets\"",
             "Wrong1": "\"Coding Style Sheets\"",
             "Wrong2": "\"Coding Syntax Styles\""
         },
-        "15" : {
-            "Difficulty": 2,
-            "Question": "\"What does the acronym XML stand for?\"",
-            "Answer": "\"Extensible Markup Language\"",
-            "Wrong1": "\"Extreme Material Language\"",
-            "Wrong2": "\"Extra Modified Language\""
-        },
-        "16" : {
+        "28" : {
             "Difficulty": 2,
             "Question": "\"What does the acronym API stand for?\"",
             "Answer": "\"Application Programming Interface\"",
             "Wrong1": "\"Automatic Protocol Interface\"",
             "Wrong2": "\"Automatic Protection Idiom\""
         },
-        "17" : {
+        "29" : {
             "Difficulty": 2,
             "Question": "\"Which of these is the lowest abstract level programming language?\"",
             "Answer": "\"Machine code\"",
             "Wrong1": "\"C++\"",
             "Wrong2": "\"Java\""
         },
-        "18" : {
+        "30" : {
             "Difficulty": 2,
             "Question": "\"What does the concept of 'semantics' relate to?\"",
             "Answer": "\"Meaning and intention.\"",
             "Wrong1": "\"Being unsure of what to do.\"",
             "Wrong2": "\"Following the correct structural rules of language.\""
         },
-        "19" : {
+        "31" : {
             "Difficulty": 1,
             "Question": "\"Which of these are a good example of a computing 'Server'?\"",
             "Answer": "\"The computer that stores and provides the information.\"",
             "Wrong1": "\"The computer that uses and consumes the information.\"",
             "Wrong2": "\"The computer that encrypts the information.\""
         },
-        "20" : {
+        "32" : {
             "Difficulty": 0,
             "Question": "\"A single Personal-Computer can have multiple cores? (CPUS)\"",
             "Answer": "\"True\"",
             "Wrong1": "\"False\"",
             "Wrong2": "\"A PC can have multiple cores if and only if it has multiple screens.\""
         },
-        "21" : {
+        "33" : {
             "Difficulty": 0,
             "Question": "\"Computer programming has it's roots in these disciplines--\"",
             "Answer": "\"Arithmetic, algebra, geometry, and maths\"",
             "Wrong1": "\"English and Foreign Language\"",
             "Wrong2": "\"History and Medicine\""
         },
-        "22" : {
+        "34" : {
             "Difficulty": 0,
             "Question": "\"One of history's first programmers was a woman--\"",
             "Answer": "\"True and it was Ada Lovelace\"",
             "Wrong1": "\"True and it was Marie Curie\"",
             "Wrong2": "\"False\""
         },
-        "23" : {
+        "35" : {
             "Difficulty": 1,
             "Question": "\"Computers are used in Western Society for everyday day activities\"",
             "Answer": "\"True\"",
             "Wrong1": "\"False\"",
             "Wrong2": "\"SemiTrue, Computers are only used for very math-intensive activities.\""
         },
-        "24" : {
+        "36" : {
             "Difficulty": 2,
             "Question": "\"What term describes the concept of ubiquitous computing that appears everywhere in users' lives?\"",
             "Answer": "\"Pervasive computing\"",
             "Wrong1": "\"Desktop computing\"",
             "Wrong2": "\"Library computing\""
         },
-        "25" : {
+        "37" : {
             "Difficulty": 0,
             "Question": "\"What common tool readily uses computing and programming?\"",
             "Answer": "\"Mobile-Smart Phones\"",
             "Wrong1": "\"Lawn-mowers\"",
             "Wrong2": "\"Ruler\""
         },
-        "26" : {
+        "38" : {
             "Difficulty": 1,
             "Question": "\"Where is Silicon Valley located?\"",
             "Answer": "\"San Francisco Bay Area in Southern California.\"",
             "Wrong1": "\"Los Angeles in Southern California.\"",
             "Wrong2": "\"San Diego Area in Southern California.\""
         },
-        "27" : {
+        "39" : {
             "Difficulty": 2,
             "Question": "\"Which of these are the top computing schools and universities?\"",
             "Answer": "\"Stanford, Carnegie Mellon University, MIT\"",
             "Wrong1": "\"Arizona State University, Michigan Tech, Cal-state Riverside\"",
             "Wrong2": "\"Columbia, Brown, NotreDame\""
         },
-        "28" : {
+        "40" : {
             "Difficulty": 2,
             "Question": "\"You need to be wealthy to learn programming? \"",
             "Answer": "\"False\"",
             "Wrong1": "\"True, you need at least 5 benzes to start programming.\"",
             "Wrong2": "\"True, you need a +1000$ PC to learn programming.\""
         },
-        "29" : {
+        "41" : {
             "Difficulty": 1,
             "Question": "\"When was Apple Inc. founded?\"",
             "Answer": "\" April 1, 1976.\"",
             "Wrong1": "\" March 27, 1986\"",
             "Wrong2": "\" Janurary 11, 2007\""
         },
-        "30" : {
+        "42" : {
             "Difficulty": 0,
             "Question": "\"Google was founded while its' owners were still in--\"",
             "Answer": "\" Graduate School.\"",
             "Wrong1": "\" Diapers\"",
             "Wrong2": "\" Jail\""
         },
-        "31" : {
+        "43" : {
             "Difficulty": 0,
             "Question": "\"Amazon.com Inc is based in? (Headquarters)\"",
             "Answer": "\"Seattle, Washington\"",
             "Wrong1": "\"San Francisco, California\"",
             "Wrong2": "\"Ann Arbor, Michigan\""
         },
-        "32" : {
+        "44" : {
             "Difficulty": 0,
             "Question": "\"n 2015, Amazon surpassed _______ as the most valuable retailer in the United States by market capitalization\"",
             "Answer": "\"Walmart\"",
             "Wrong1": "\"Target\"",
             "Wrong2": "\"Chipotle\""
         },
-        "33" : {
+        "45" : {
             "Difficulty": 1,
             "Question": "\"Apple Inc. was founded by these two entrepenuers--\"",
             "Answer": "\"Steve Jobs and Steve Wozniak\"",
             "Wrong1": "\"Steve Jobs and Bill Gates\"",
             "Wrong2": "\"Steve Jobs and Steve-O\""
         },
-        "34" : {
+        "46" : {
             "Difficulty": 2,
             "Question": "\"What qualities do you need to become a quality programmer and computer scientist?\"",
             "Answer": "\"Curious, Hardworking, and interest in Problem-Solving\"",
             "Wrong1": "\"Nerdy, Glasses, and Proficient at Video Games\"",
             "Wrong2": "\"Math genius, rap god, and world-class typist\""
         },
-        "35" : {
+        "47" : {
             "Difficulty": 2,
             "Question": "\"What is RAM?\"",
             "Answer": "\"Random Access Memory\"",
             "Wrong1": "\"Read Anywhere Memory\"",
             "Wrong2": "\"Random Anti Matter\""
         },
-        "36" : {
+        "48" : {
             "Difficulty": 1,
             "Question": "\"What mega media company merged with AOL at the turn of the century?\"",
             "Answer": "\"Time Warner\"",
             "Wrong1": "\"Comcast\"",
             "Wrong2": "\"Fox Media\""
         },
-        "37" : {
+        "49" : {
             "Difficulty": 2,
             "Question": "\"Name the famous computer scientist who worked to break Nazi codes at Bletchley Park during WWII.\"",
             "Answer": "\"Alan Turing\"",
             "Wrong1": "\"Steve Jobs\"",
             "Wrong2": "\"Bill Gates\""
         },
-        "38" : {
+        "50" : {
             "Difficulty": 2,
             "Question": "\"You need to be wealthy to learn programming? \"",
             "Answer": "\"False\"",
             "Wrong1": "\"True, you need at least 5 benzes to start programming.\"",
             "Wrong2": "\"True, you need a +1000$ PC to learn programming.\""
         },
-        "39" : {
+        "51" : {
             "Difficulty": 1,
             "Question": "\"What year was Google founded?\"",
             "Answer": "\" 1998.\"",
             "Wrong1": "\" 2001\"",
             "Wrong2": "\" 2008\""
         },
-        "40" : {
+        "52" : {
             "Difficulty": 0,
             "Question": "\"What Apple portable debuted in a choice of two fruity color schemes, Blueberry or Tangerine?\"",
             "Answer": "\" The iBook.\"",

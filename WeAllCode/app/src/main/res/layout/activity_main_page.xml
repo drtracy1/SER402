@@ -100,7 +100,7 @@
             android:layout_alignEnd="@+id/avatarButton" />
 
         <ImageView
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/avatarImageView"
             android:layout_alignBottom="@+id/tweet_Button"

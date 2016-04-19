@@ -10,36 +10,6 @@
     tools:context="ser402team.weallcode.QuestionActivity"
     android:background="@drawable/bgscene_edit">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Question"
-        android:id="@+id/nextQuestionButton"
-        android:src="@drawable/generic_reedit"
-        android:layout_alignTop="@+id/chatIconButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <!-- android:layout_above="@+id/timer" /> -->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Press &quot;Next Question&quot; to Start!"
-        android:id="@+id/questionTextField"
-        android:layout_marginTop="55dp"
-        android:layout_centerHorizontal="true" />
-<!-- android:layout_below="@+id/timer" /> -->
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chatIconButton"
-        android:src="@drawable/chaticon_edit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/questionTextField"
-        android:layout_alignEnd="@+id/questionTextField" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -50,70 +20,71 @@
         android:layout_alignParentStart="true"
         android:src="@drawable/sliderarrowleft" />
 
-    <!--
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/timer"
-        android:text="seconds remaining: 30"
-        android:layout_below="@+id/returnButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp" />
--->
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Press &quot;Next Question&quot; to Start!"
+        android:id="@+id/questionTextField"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="50dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Answer 1"
+        android:text=""
         android:id="@+id/answer1"
         android:onClick="onClick"
         android:clickable="true"
-        android:layout_marginTop="72dp"
-        android:layout_below="@+id/questionTextField"
-        />
-    <!--
-        android:layout_toStartOf="@+id/timer"
-        android:layout_toLeftOf="@+id/timer" />
--->
+        android:paddingBottom="50dp"
+        android:layout_below="@+id/questionTextField" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Answer 2"
+        android:text=""
         android:onClick="onClick"
         android:clickable="true"
         android:id="@+id/answer2"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:paddingBottom="50dp"
+        android:layout_below="@+id/answer1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Answer 3"
+        android:text=""
         android:onClick="onClick"
         android:clickable="true"
         android:id="@+id/answer3"
-        android:layout_alignTop="@+id/correct"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="88dp" />
+        android:layout_below="@id/answer2"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/correct"
+        android:layout_below="@id/answer3" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/correct"
+        android:text="Next Question"
+        android:id="@+id/nextQuestionButton"
+        android:src="@drawable/generic_reedit"
+        android:layout_alignTop="@+id/chatIconButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chatIconButton"
+        android:src="@drawable/chaticon_edit"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/answer2"
-        android:layout_toEndOf="@+id/answer1"
-        android:layout_toRightOf="@+id/answer1"
-        />
-    <!--
-    android:layout_alignRight="@+id/timer"
-    android:layout_alignEnd="@+id/timer" />
--->
+        android:layout_alignRight="@+id/questionTextField"
+        android:layout_alignEnd="@+id/questionTextField" />
 
 </RelativeLayout>

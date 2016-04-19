@@ -151,17 +151,22 @@ public class QuestionActivity extends AppCompatActivity {
                 questionText.setTypeface(custom_font);
                 if (isAllTrue(isUsed) == false) {     //if not all questions have been used
                     questionText.setText(questionList.get(index).getQuestion()); //get index to question from last if block
-                } else {                            //all questions have been used
-                    questionText.setText("End of Questions");
+                    isUsed[index] = true;
+                    current = questionList.get(index); //Get the current QuestionAnswer in the list
+
+                    //Initialize unique answers for every questions
+                    answerButton1.setText(current.getAnswerFromList());
+                    answerButton2.setText(current.getAnswerFromList());
+                    answerButton3.setText(current.getAnswerFromList());
+                } else { //all questions have been used
+
+                    questionText.setText("End of questions");
+                    answerButton1.setText("");
+                    answerButton2.setText("");
+                    answerButton3.setText("");
+                    //hide nextQuestionButton
+                    view.setVisibility(View.GONE);
                 }
-                isUsed[index] = true;
-
-                current = questionList.get(index); //Get the current QuestionAnswer in the list
-
-                //Initialize unique answers for every questions
-                answerButton1.setText(current.getAnswerFromList());
-                answerButton2.setText(current.getAnswerFromList());
-                answerButton3.setText(current.getAnswerFromList());
             }
         });
 
@@ -232,8 +237,8 @@ public class QuestionActivity extends AppCompatActivity {
     //Here you should populate the QA list
     protected void generateQAList(Firebase REF) {
 
-        //set 5 questions to the list --> this logic can be changed later
-        for (int i = 0; i < 5; i++) {
+        //set 10 questions to the list --> this logic can be changed later
+        for (int i = 0; i < 10; i++) {
             setQuestion(REF);
         }
     }

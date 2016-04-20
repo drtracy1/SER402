@@ -55,7 +55,7 @@ public class GravatarAdapter extends BaseAdapter {
 
         GravatarActivity.User user = getItem(position);
 
-        String gravatarUrl = Gravatar.init().with(user.email).force404().size(mAvatarImageViewPixelSize * 4).build();
+        String gravatarUrl = Gravatar.init().with(user.email).force404().size(mAvatarImageViewPixelSize).build();
         Picasso.with(mContext)
                 .load(gravatarUrl)
                 .placeholder(R.drawable.logo)

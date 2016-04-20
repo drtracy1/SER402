@@ -83,10 +83,6 @@ public class ChatAdapter extends BaseAdapter {
         chatMessages.add(message);
     }
 
-    public void add(List<ChatMessage> messages) {
-        chatMessages.addAll(messages);
-    }
-
     private void setAlignment(ViewHolder holder, String isMe) {
         if (!myUsername.equalsIgnoreCase(isMe)) {
             holder.contentWithBG.setBackgroundResource(R.drawable.in_message_bg);

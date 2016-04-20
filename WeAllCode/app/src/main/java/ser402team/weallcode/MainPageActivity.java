@@ -94,13 +94,14 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
+
         ImageView avatarButton = (ImageView) findViewById(R.id.avatarButton);
         avatarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainPageActivity.this, AvatarMenuActivity.class);
                 intent.putExtra(MY_USERNAME, myUsername);
-                startActivity(intent);
+                //startActivity(intent);
             }
         });
 

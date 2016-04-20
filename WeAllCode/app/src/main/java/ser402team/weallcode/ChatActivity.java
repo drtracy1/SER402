@@ -16,9 +16,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -113,25 +110,23 @@ public class ChatActivity extends AppCompatActivity {
 
                 if (dataSnapshot.getValue() != null) {
                     String str = dataSnapshot.getValue().toString();
-                    String usr, msg, dte;
 
-                    try {
-                        //for some reason, JSONObject does not like certain characters within
-                        //   a string. it thinks it is using a NON-double quoted string...researching
-                        JSONObject jObj = new JSONObject(str.trim());
-                        usr = jObj.getString("author");
-                        msg = jObj.getString("textMessage");
-                        dte = jObj.getString("date");
+                    int usrIndexStart = str.indexOf("author=") + 7;
+                    int usrIndexEnd = str.length() - 1;
+                    String author = str.substring(usrIndexStart, usrIndexEnd);
 
-                        ChatMessage chatMsg = new ChatMessage(usr, msg, dte);
-                        //chatHistory.add(count, chatMsg);
-                        //count++;
+                    int msgIndexStart = str.indexOf("textMessage=") + 12;
+                    int msgIndexEnd = str.indexOf(",", msgIndexStart);
+                    String txtMsg = str.substring(msgIndexStart, msgIndexEnd);
 
-                        displayMessage(chatMsg);
+                    int dteIndexStart = str.indexOf("date=") + 5;
+                    int dteIndexEnd = str.indexOf(",", dteIndexStart + 8); //skip first comma
+                    String theDate = str.substring(dteIndexStart, dteIndexEnd);
 
-                    } catch (JSONException jex) {
-                        jex.printStackTrace();
-                    }
+                    ChatMessage chatMsg = new ChatMessage(author, txtMsg, theDate);
+
+                    displayMessage(chatMsg);
+
                 } else {
                     System.out.println("DATASNAPSHOT IS NULL");
                 }
@@ -167,7 +162,7 @@ public class ChatActivity extends AppCompatActivity {
                     return;
                 }
 
-                String formatting = "MMM-d-yyyy--HH-mm-ss"; //JSON objects do not like commas or colons
+                String formatting = "MMM d, yyyy HH:mm:ss";
                 SimpleDateFormat sdf = new SimpleDateFormat(formatting, Locale.US);
 
                 //create our ChatMessage model object

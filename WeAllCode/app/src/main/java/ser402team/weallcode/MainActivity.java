@@ -54,9 +54,6 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-
-
-
     private ImageView logoView1;
     private ImageView fbPic1;
 
@@ -74,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private String gender1 = "man";
     private String locale1 = "NYC";
 
-
     private static UserInformation ui = null;
-
 
     public static final String MY_USERNAME = "ser402team.weallcode.MY_USERNAME";
     private static String usernameLowercase = "";
@@ -91,15 +86,24 @@ public class MainActivity extends AppCompatActivity {
 
     private static Bitmap bmpFB = null;
 
+    //setters and getters
+    private void setUsername(String un) { username = un; }
+    private void setUsernameLowercase() { usernameLowercase = getUsername().toLowerCase(); }
+    private void setPassword(String pw) { password = pw; }
+    private void setEmail(String em) { email = em; }
+    private String getUsername() { return username; }
+    private String getUsernameLowercase() { return usernameLowercase; }
+    private String getPassword() { return password; }
+    private String getEmail() { return email; }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
-
 
         //connect to firebase
         Firebase.setAndroidContext(this);
@@ -107,14 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
         //final ProfilePictureView fbIcon = (ProfilePictureView) findViewById(R.id.fbPic1);
 
-
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
 
         //There are other potentially useful read permissions but we have to go through an official facebook.com registration and review process.
         //If we have time we should look into doing that, but for testing and prototyping purposes--is not necessary.
         fbLoginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email"));
-
 
         // THIS IS THE CALLback that actually does an async network call to get the facebook data from the login.
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -139,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
                                     nameFirst = object.getString("first_name");
                                     gender1 = object.getString("gender");
                                     locale1 = object.getString("locale");
-                                   // textViewT.setText("Hi, " + name1 + ", " + email1 + ", " + gender1 + ", " + locale1);
-                                    //System.out.println("Hi2, " + email1 + name1);
 
                                     //Integer tempI = Integer.parseInt(object.getString("id"));]
                                     Integer tempI = object.getInt("id");
@@ -152,20 +152,8 @@ public class MainActivity extends AppCompatActivity {
                                     setUsernameLowercase();
                                     setPassword(tempP);
 
-                                    //Picasso.with(MainActivity.this).load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(fbPic1);
-                                    //android.util.Log.w(getClass().getSimpleName(), "https://graph.facebook.com/" + userID+ "/picture?type=large");
-
-                                    // use the nifty new ProfilePictureView to display user's facebook icon.
-                                    // fbIcon.setProfileId(object.getString("id"));
-                                    android.util.Log.w(getClass().getSimpleName(), "pPV: " + object.getString("id"));
-
                                     //gather user information into one object
                                     ui = new UserInformation(getUsername(), getEmail(), getPassword());
-
-                                    //translate fbImage into bitmap -> bmpFB
-                                    //ImageView fbImage = ( ( ImageView)fbIcon.getChildAt( 0));
-                                    //    bmpFB  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap();
-
 
                                     if( authenticateLogin(REF)){
 
@@ -218,9 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 request.executeAsync();
             }
 
-
-
-
             @Override
             public void onCancel() {
                 //Log.v("LoginActivity", "cancel");
@@ -236,18 +221,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
-
-
-    //setters and getters
-    private void setUsername(String un) { username = un; }
-    private void setUsernameLowercase() { usernameLowercase = getUsername().toLowerCase(); }
-    private void setPassword(String pw) { password = pw; }
-    private void setEmail(String em) { email = em; }
-    private String getUsername() { return username; }
-    private String getUsernameLowercase() { return usernameLowercase; }
-    private String getPassword() { return password; }
-    private String getEmail() { return email; }
 
     //authentication method
     public boolean authenticateLogin(Firebase REF) {
@@ -352,24 +325,15 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void goToLogin(View v){
-        //android.util.Log.w(getClass().getSimpleName(), "goToDialog");
         final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
         v.startAnimation(animTranslate);
-        //Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
-
-        //textViewT.setText("Hi, " + email1 + name1);
-        //System.out.println("Hi2, " + email1 + name1);
-
-
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
-
     }
 
     public void goToCreateAcc(View v){

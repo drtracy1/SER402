@@ -68,18 +68,6 @@ public class MainPageActivity extends AppCompatActivity {
         String welcomeUser = "Welcome, "+myUsername;
         welcomeMsg.setText(welcomeUser);
 
-        //If bytearray translated bitmap image of facebook profile pic is passed in the intent, then get that bitmap and translate it back into usuable .bmp form
-        /*
-        if (getIntent().getByteArrayExtra(("imgFB"))!=null){
-            byte[] byteArray = getIntent().getByteArrayExtra("imgFB");
-            bmpFB = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-
-            view.setImageBitmap(bmpFB);
-            android.util.Log.w(getClass().getSimpleName(), "fromBit: onCreate()");
-        }
-        */
-
-
         absolute_path = ABS_PATH_BEGIN + getApplicationContext().getPackageName() + ABS_PATH_END;
         loadImageFromStorage();
 
